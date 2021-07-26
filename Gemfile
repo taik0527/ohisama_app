@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 #
 
 gem 'annotate'
+gem 'bootstrap'
 gem 'config'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
