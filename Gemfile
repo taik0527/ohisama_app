@@ -30,11 +30,13 @@ gem 'annotate'
 gem 'bootstrap'
 gem 'config'
 gem 'font-awesome-sass'
+gem 'html2slim'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'meta-tags'
 gem 'rails-i18n'
 gem 'rename'
+gem 'slim-rails'
 gem 'sorcery'
 
 # Reduces boot times through caching; required in config/boot.rb
