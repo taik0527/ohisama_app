@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -32,6 +34,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'meta-tags'
 gem 'rails-i18n'
+gem 'rename'
 gem 'sorcery'
 
 # Reduces boot times through caching; required in config/boot.rb
