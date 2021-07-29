@@ -1,4 +1,10 @@
-h1
-  | Users#edit
-p
-  | Find me in app/views/users/edit.html.erb
+.login-register-form
+  .login-register-form-inner
+    .card.mb-3
+      = form_with model: @user, class: 'card-body', local: true do |f|
+        = render 'shared/error_messages', object: @user
+        .form-group
+          = f.label :username, class: 'bmd-label-floating'
+          = f.text_field :username, class: 'form-control'
+
+        = f.submit '更新', class: 'btn btn-raised btn-primary'

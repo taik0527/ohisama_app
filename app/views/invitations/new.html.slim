@@ -6,7 +6,7 @@ h1 メンバー招待フォーム
       = form_with model: @invitation, class: 'card-body', local: true do |f|
         = render 'shared/error_messages', object: @invitation
         .form-group
-          = f.label :email, class: 'bmd-label-floating'
+          = f.label :email
           = f.email_field :email, class: 'form-control'
 
         = f.submit '招待', class: 'btn btn-raised btn-primary'

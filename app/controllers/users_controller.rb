@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
+
   def index
     @users = User.all
   end
@@ -23,28 +25,43 @@ class UsersController < ApplicationController
         # 登録完了メールの送信
         UserMailer.user_created(@user).deliver_now
         # 画面遷移
-        redirect_to root_path, success: 'ユーザーを作成しました'
+        redirect_to root_path, success: 'サインアップが完了しました'
       else
-        redirect_to request.referer, notice: "ユーザーを作成出来ません"
+        redirect_to request.referer, notice: "サインアップに失敗しました"
       end
     else
-      redirect_to request.referer, notice: "ユーザーを作成出来ません"
+      redirect_to request.referer, notice: "サインアップに失敗しました"
     end
   end
 
   def edit
+    @user = User.find(current_user.id)
   end
 
   def update
+    @user = User.find(current_user.id)
+    if @user.update(user_update_params)
+      redirect_to users_path, success: 'プロフィールを更新しました'
+    else
+      flash.now['danger'] = 'プロフィールの更新に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
+    @user = User.find(id: params[:id])
+    @user.destroy
+    redirect_to users_path, notice: "ユーザー「#{@user.username}」を削除しました。"
   end
 
   private
 
   def user_params
     params.require(:user).permit(:password, :username)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:username)
   end
 
   def token_params

@@ -1,6 +1,7 @@
 require 'securerandom'
 
 class InvitationsController < ApplicationController
+  before_action :admin_required, only: [:new, :create]
 
   def new
     @invitation = Invitation.new
@@ -18,7 +19,6 @@ class InvitationsController < ApplicationController
       flash.now[:danger] = '招待メールの送信に失敗しました'
       render :new
     end
-
   end
 
   private
