@@ -1,4 +1,11 @@
-h1
-  | Users#index
-p
-  | Find me in app/views/users/index.html.erb
+h1 ユーザー一覧
+
+.container
+  .row
+    .col-md-6.col-12.offset-md-3.mb-3
+      .card
+        .card-body
+          .mb-3
+            - @users.each do |user|
+              tr
+                td= user.username

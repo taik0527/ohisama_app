@@ -3,18 +3,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:email], params[:password])
-
-    if @user
-      redirect_back_or_to posts_path, success: 'ログインしました'
+    user = User.find_by(email: session_params[:email])
+    if user&.authenticate(session_params[:password])
+      session[:user_id] = user.id
+      redirect_to questions_url, success: "ログインしました"
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = "ログインに失敗しました"
       render :new
     end
   end
 
   def destroy
-    logout
-    redirect_to login_path, success: 'ログアウトしました'
+    reset_session
+    redirect_to  login_url, notice: "ログアウトしました。"
+  end
+
+  private
+
+  def session_params
+    params.require(:session).permit(:email, :password)
   end
 end
