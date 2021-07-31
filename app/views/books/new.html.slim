@@ -1,0 +1,29 @@
+h1 蔵書の新規投稿
+
+= form_with url: search_books_path, class: 'card-body', local: true, method: :get do |f|
+  .form-group
+    = f.label :keyword
+    = f.text_field :keyword, class: 'form-control', value: @search_form.keyword
+  = f.submit '検索', class: 'btn btn-raised btn-primary'
+
+- @books.each do |book|
+  = link_to controller: "books", action: "new", title: book.title, authors: book.authors, image: book.image, google_books_api_id: book.google_books_api_id
+    = book.title
+    br
+    = book.authors
+    br
+    = image_tag book.image, size: '100x100'
+    br
+
+= form_with model: @book,url: books_path, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', value: "#{@title}"
+  .form-group
+    = f.label :authors
+    = f.text_field :authors, class: 'form-control', value: "#{@authors}"
+
+  = f.hidden_field :image, class: 'form-control', value: "#{@image}"
+  = f.hidden_field :google_books_api_id, class: 'form-control', value: "#{@google_books_api_id}"
+
+  = f.submit '登録', class: 'btn btn-primary btn-raised'

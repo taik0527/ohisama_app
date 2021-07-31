@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 #
 
+gem 'addressable'
 gem 'annotate'
 gem 'bootstrap'
 gem 'config'
@@ -39,6 +40,8 @@ gem 'rails-i18n'
 gem 'rename'
 gem 'slim-rails'
 gem 'sorcery'
+gem 'json'
+gem 'httparty'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
