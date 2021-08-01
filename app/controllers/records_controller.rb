@@ -3,9 +3,12 @@ class RecordsController < ApplicationController
   end
 
   def new
+    @record = Record.new
+    @users = User.all
   end
 
   def create
+    render :index
   end
   
   def show

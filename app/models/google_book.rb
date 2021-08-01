@@ -27,7 +27,7 @@ class GoogleBook
         )
       end
   
-      def new_from_id(googlebooksapi_id)
+      def new_from_id(google_books_api_id)
         url = url_of_creating_from_id(google_books_api_id)
         item = get_json_from_url(url)
         new_from_item(item)

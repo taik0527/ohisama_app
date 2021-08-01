@@ -2,8 +2,8 @@ require 'net/https'
 require 'json'
 
 module GoogleBooksApi
-  def url_of_creating_from_id(googlebooksapi_id)
-    "https://www.googleapis.com/books/v1/volumes/#{googlebooksapi_id}"
+  def url_of_creating_from_id(google_books_api_id)
+    "https://www.googleapis.com/books/v1/volumes/#{google_books_api_id}"
   end
   #  Google Books APIのIDから、APIのURLを取得する
 

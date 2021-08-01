@@ -1,1 +1,10 @@
 = link_to '蔵書の登録', new_book_path, class: 'btn btn-primary mr-3'
+
+- @books.each do |book|
+  br
+  = book.title
+  br
+  = image_tag book.image, size: '100x100'
+- @authors.each do |author|
+  br
+  = author.name

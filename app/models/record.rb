@@ -1,5 +1,5 @@
 class Record < ApplicationRecord
-  has_one_attached :images
+  has_many_attached :images
 
   validates :body, presence: true
   validates :classroom, presence: true
