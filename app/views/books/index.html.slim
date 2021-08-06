@@ -4,7 +4,7 @@
   br
   = book.title
   br
+  - book.authors.each do |author|
+    = author.name
+    br
   = image_tag book.image, size: '100x100'
-- @authors.each do |author|
-  br
-  = author.name

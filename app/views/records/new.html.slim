@@ -1,6 +1,10 @@
 h1 活動記録投稿画面
 
-= form_with model: @record, local: true do |f|
+= render 'records/search_form', object: @search_form
+.results_area
+.selected_area
+
+= form_with url: records_path, local: true do |f|
   = render 'shared/error_messages', object: @record
   .form-group
     = f.label :date
@@ -10,14 +14,15 @@ h1 活動記録投稿画面
     = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'form-control'
   .form-group
     = f.label :reader
-    = f.collection_select(:reader, User.all, :username, :username, {:prompt => "選択してください"}, {:multiple => true})
-    
+    = f.collection_select(:user_ids, User.all, :id, :username, {:prompt => "選択してください"}, {:multiple => true})
   .form-group
     = f.label :images
     = f.file_field :images, multiple: true, class: 'form-control'
   .form-group
     = f.label :body
     = f.text_field :body, placeholder: "今回は〜", class: 'form-control'
+  
+  = f.hidden_field :google_books_api_id, class: 'form-control', value: @google_books_api_id
 
   = f.submit '投稿', class: 'btn btn-primary btn-raised'
   

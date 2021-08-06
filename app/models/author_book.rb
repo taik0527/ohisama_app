@@ -1,4 +1,4 @@
 class AuthorBook < ApplicationRecord
-  belongs_to :book, dependent: :destroy
-  belongs_to :author, dependent: :destroy
+  belongs_to :book, optional: true, dependent: :destroy
+  belongs_to :author, optional: true, dependent: :destroy
 end

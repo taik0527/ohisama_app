@@ -1,4 +1,4 @@
 class BookRecord < ApplicationRecord
-  belongs_to :book
-  belongs_to :record
+  belongs_to :book, optional: true
+  belongs_to :record, optional: true
 end

@@ -5,10 +5,16 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :records, only: %i[new create index show edit update destroy]
+  resources :records, only: %i[new create index show edit update destroy] do
+    collection do
+      get :search
+      get :select
+    end
+  end
   resources :books, only: %i[new create index destroy] do
     collection do
       get :search
+      get :select
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

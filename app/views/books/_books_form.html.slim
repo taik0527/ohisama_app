@@ -1,0 +1,8 @@
+= form_with url: books_path, local: true do |f|
+  = @title
+  br
+  = image_tag @image, size: '100x100'
+  br
+  = f.hidden_field :google_books_api_id, class: 'form-control', value: @google_books_api_id
+
+  = f.submit '登録', class: 'btn btn-primary btn-raised'

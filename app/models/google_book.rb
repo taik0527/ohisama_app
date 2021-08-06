@@ -51,38 +51,11 @@ class GoogleBook
       end
     end
   
-    def save
-      return false unless valid?
-  
-      book = build_book
-      return false unless book.valid?
-  
-      ActiveRecord::Base.transaction do
-        book.remote_image_url = image if image.present?
-        book.save
-        authors.each.with_index do |author, index|
-          author = book.authors.build(name: author)
-          author.is_representation = index.zero?
-          author.save
-        end
-      end
-      true
-    end
-  
     def find_book_or_save
       if Book.find_by(google_books_api_id: google_books_api_id) || save
         Book.find_by(google_books_api_id: google_books_api_id)
       else
         false
       end
-    end
-  
-    private
-  
-    def build_book
-      Book.new(
-        google_books_api_id: google_books_api_id,
-        title: title,
-      )
     end
   end

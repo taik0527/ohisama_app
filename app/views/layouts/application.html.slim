@@ -19,7 +19,7 @@ html
           li.nav-item= link_to '蔵書一覧', books_path, class: 'nav-link'
           li.nav-item= link_to 'メンバー一覧', users_path, class: 'nav-link'
           li.nav-item= link_to current_user.username, edit_user_path(current_user), class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', logout_path, class: 'nav-link', method: :delete
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
     = render 'shared/flash_messages'
     
     = yield
