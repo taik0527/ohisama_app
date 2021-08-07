@@ -20,21 +20,18 @@ class BooksController < ApplicationController
   end
 
   def select
-    @title = params[:title] # if params[:title].present?
-    @google_books_api_id = params[:google_books_api_id] # if params[:google_books_api_id].present?
-    @image = params[:image] # if params[:image].present?
+    @title = params[:title]
+    @google_books_api_id = params[:google_books_api_id]
+    @image = params[:image]
+    if @image.nil?
+      @image = '/assets/no_image.jpeg'
+    end
   end
 
   def create
     @google_book = GoogleBook.new_from_id(params[:google_books_api_id])
     @book = Book.new(title: @google_book.title, google_books_api_id: params[:google_books_api_id], storage: true)
     authors = @google_book.authors
-    if authors.present?
-      authors.map do |author|
-        author.delete!("　")
-        author.delete!(" ")
-      end
-    end
     image_url = @google_book.image
     # 表紙画像があればそれを保存
     if image_url.present?
@@ -46,9 +43,12 @@ class BooksController < ApplicationController
     end
     # もし本がsaveできたら
     if @book.save
-      # 著者を分割して保存する処理
-      # データベースを参照してもし同じ著者がいたらそのレコードを紐付ける処理を書きたい
       if authors.present?
+        # authorの空白を削除
+        authors.map do |author|
+          author.delete!("　")
+          author.delete!(" ")
+        end
         authors.each do |author|
           if Author.where(name: author).count >= 1
             duplicate_author = Author.where(name: author)
@@ -63,11 +63,13 @@ class BooksController < ApplicationController
       # 一覧にリダイレクト
       redirect_to books_path, success: '蔵書に登録しました'
     else
-      redirect_to new_book_path, notice: '登録できません'
+      redirect_to new_book_path, notice: '既に登録済みです'
     end
   end
 
   def destroy
+    @book = Book.find_by(id: params[:id])
+    @book.destroy
   end
 
   private

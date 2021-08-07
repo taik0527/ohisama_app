@@ -1,17 +1,9 @@
 h1 ユーザー一覧
-
-.container
-  .row
-    .col-md-6.col-12.offset-md-3.mb-3
-      .card
-        .card-body
-          .mb-3
-            - @users.each do |user|
-              tr
-                td= user.username
-                td
-                  - if current_user.admin? 
-                    - unless user.admin?
-                      = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
-      - if current_user.admin?
-        = link_to 'メンバーの招待', new_invitation_path, class: 'btn btn-primary mr-3'
+- @users.each do |user|
+  = user.username
+  - if current_user.admin? 
+    - unless user.admin?
+      = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+  br
+- if current_user.admin?
+  = link_to 'メンバーの招待', new_invitation_path, class: 'btn btn-primary mr-3'

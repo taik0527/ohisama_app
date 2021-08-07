@@ -14,15 +14,17 @@ h1 活動記録投稿画面
     = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'form-control'
   .form-group
     = f.label :reader
-    = f.collection_select(:user_ids, User.all, :id, :username, {:prompt => "選択してください"}, {:multiple => true})
+    - @users.each.with_index do |user,i|
+      .label
+      = f.check_box  :user_ids, {multiple: true}, user.id, nil
+      = user.username
   .form-group
     = f.label :images
     = f.file_field :images, multiple: true, class: 'form-control'
   .form-group
     = f.label :body
     = f.text_field :body, placeholder: "今回は〜", class: 'form-control'
-  
-  = f.hidden_field :google_books_api_id, class: 'form-control', value: @google_books_api_id
+  .selected_form
 
   = f.submit '投稿', class: 'btn btn-primary btn-raised'
   

@@ -1,1 +1,16 @@
 = link_to '活動記録の投稿', new_record_path, class: 'btn btn-primary mr-3'
+br
+- @records.each do |record|
+  = link_to record_path(record)
+    = record.date
+    br
+    = record.classroom
+    br
+    = record.body
+    br
+    - record.users.each do |user|
+      = user.username
+      br
+    - record.images.each do |image|
+      = image_tag image, size: '100x100'
+      br
