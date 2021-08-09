@@ -1,12 +1,15 @@
-h1 メンバー招待フォーム
-
-.login-register-form
-  .login-register-form-inner
-    .card.mb-3
+= render 'shared/error_messages', object: @invitation
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ユーザー招待フォーム
+.section
+  .container
+    .culumns
       = form_with model: @invitation, class: 'card-body', local: true do |f|
-        = render 'shared/error_messages', object: @invitation
-        .form-group
-          = f.label :email
-          = f.email_field :email, class: 'form-control'
-
-        = f.submit '招待', class: 'btn btn-raised btn-primary'
+        .field
+          = f.label :email, class: 'label'
+          = f.email_field :email, class: 'input'
+        .has-text-centered
+          = f.submit '招待', class: 'button is-primary'

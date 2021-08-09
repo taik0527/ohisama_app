@@ -1,0 +1,25 @@
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録詳細
+
+.section
+  .columns
+    .column
+      .card
+        .card-content
+          .content
+            = @record.date
+            br
+            = @record.classroom
+            - if @record.users.present?
+              p 担当:
+              - @record.users.each do |user|
+                = user.username
+                br
+          .content
+            = @record.body
+          .content.has-text-right
+            = link_to '編集', edit_record_path(@record), class: 'button is-primary is-small'
+            = link_to '削除', record_path(@record), method: :delete, data: { confirm: "記録を削除します。よろしいですか？"}, class: 'button is-danger is-small'

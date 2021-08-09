@@ -1,8 +1,18 @@
-= form_with url: books_path, local: true do |f|
-  = @title
-  br
-  = image_tag @image, size: '100x100'
-  br
-  = f.hidden_field :google_books_api_id, class: 'form-control', value: @google_books_api_id
+.section
+  .box
+    .media
+      .media-left
+        = image_tag @image, size: '100x100', class: 'image'
+      .media-content
+        .content
+          .title.is-5
+            = @title
+        .content
+          - if authors.present?
+            - authors.each do |author|
+              = author
 
-  = f.submit '登録', class: 'btn btn-primary btn-raised'
+.container.has-text-centered
+  = form_with url: books_path, local: true do |f|
+    = f.hidden_field :google_books_api_id, value: @google_books_api_id
+    = f.submit '登録', class: 'button is-primary'

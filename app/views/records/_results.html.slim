@@ -1,11 +1,6 @@
-- @books.each do |book|
-  = link_to select_records_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
-    = book.title
-    br
-    = book.authors
-    br
-    - if book.image
-      = image_tag book.image, size: '100x100'
-    - else
-      = image_tag '/assets/no_image.jpeg', size: '100x100'
-    br
+.field
+  p 選択してください
+  - @books.each do |book|
+    = link_to select_records_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
+      .controll
+        = book.title

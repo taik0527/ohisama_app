@@ -1,11 +1,16 @@
-- @books.each do |book|
-  = link_to select_books_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
-    = book.title
-    br
-    = book.authors
-    br
-    - if book.image
-      = image_tag book.image, size: '100x100'
-    - else
-      = image_tag '/assets/no_image.jpeg', size: '100x100'
-    br
+.section
+  - @books.each do |book|
+    .box
+      .media
+        .media-left
+          = link_to select_books_path(:title => book.title, :authors => book.authors, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
+            = image_tag book.image, size: '100x100', class: 'image'
+        .media-content
+          .content
+            .title.is-5
+              = book.title
+          .content
+            - if book.authors.present?
+              - book.authors.each do |author|
+                p
+                  = author

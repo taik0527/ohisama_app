@@ -1,16 +1,25 @@
-= link_to '活動記録の投稿', new_record_path, class: 'btn btn-primary mr-3'
-br
-- @records.each do |record|
-  = link_to record_path(record)
-    = record.date
-    br
-    = record.classroom
-    br
-    = record.body
-    br
-    - record.users.each do |user|
-      = user.username
-      br
-    - record.images.each do |image|
-      = image_tag image, size: '100x100'
-      br
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録一覧
+.has-text-centered
+  = link_to '活動記録の投稿', new_record_path, class: 'button is-primary'
+.section
+  .container
+    - @records.each do |record|
+      = link_to record_path(record)
+        .columns
+          .column
+            .card
+              .card-content
+                .media
+                  .media-content
+                    p class="title is-4" = record.date
+                    p class="subtitle is-6" = record.classroom
+                .content
+                  - if record.users.present?
+                    p 担当:
+                    - record.users.each do |user|
+                      = user.username
+                      br

@@ -8,11 +8,9 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    # トークンにランダムな文字列を入れる
     @token = SecureRandom.base64(10)
     @invitation = Invitation.new(invitation_params.merge(token: @token, expired_at: 24.hours.since))
     if @invitation.save
-      # メールの送信
       UserMailer.invitation(@invitation).deliver_now
       redirect_to users_path, success: 'ユーザーを招待しました'
     else

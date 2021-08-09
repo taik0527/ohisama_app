@@ -1,9 +1,19 @@
-h1 ユーザー一覧
-- @users.each do |user|
-  = user.username
-  - if current_user.admin? 
-    - unless user.admin?
-      = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
-  br
-- if current_user.admin?
-  = link_to 'メンバーの招待', new_invitation_path, class: 'btn btn-primary mr-3'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ユーザー一覧
+.has-text-centered
+  - if current_user.admin?
+    = link_to 'ユーザーの招待', new_invitation_path, class: 'button is-primary'
+.section
+  .container
+    - @users.each do |user|
+      .box
+        .media
+          .media-content
+            = user.username
+          - if current_user.admin? 
+            - unless user.admin?
+              .has-text-right
+                = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'

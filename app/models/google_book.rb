@@ -47,7 +47,11 @@ class GoogleBook
       private
   
       def image_url
-        @volume_info['imageLinks']['smallThumbnail'] if @volume_info['imageLinks'].present?
+        if @volume_info['imageLinks'].present?
+          @volume_info['imageLinks']['smallThumbnail']
+        else
+          return '/assets/no_image.jpeg'
+        end
       end
     end
   

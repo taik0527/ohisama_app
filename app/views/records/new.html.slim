@@ -1,30 +1,41 @@
-h1 活動記録投稿画面
+= render 'shared/error_messages', object: @record
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録投稿
 
-= render 'records/search_form', object: @search_form
-.results_area
-.selected_area
-
-= form_with url: records_path, local: true do |f|
-  = render 'shared/error_messages', object: @record
-  .form-group
-    = f.label :date
-    = f.date_field :date, class: 'form-control'
-  .form-group
-    = f.label :classroom
-    = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'form-control'
-  .form-group
-    = f.label :reader
-    - @users.each.with_index do |user,i|
-      .label
-      = f.check_box  :user_ids, {multiple: true}, user.id, nil
-      = user.username
-  .form-group
-    = f.label :images
-    = f.file_field :images, multiple: true, class: 'form-control'
-  .form-group
-    = f.label :body
-    = f.text_field :body, placeholder: "今回は〜", class: 'form-control'
-  .selected_form
-
-  = f.submit '投稿', class: 'btn btn-primary btn-raised'
-  
+.section
+  .container
+    .culumns
+      = render 'records/search_form', object: @search_form
+      .results_area
+      .selected_field
+      = form_with url: records_path, class: 'culumn', local: true do |f|
+        .field
+          = f.label :date, class: 'label'
+          = f.date_field :date, class: 'input'
+        .field
+          = f.label :classroom, class: 'label'
+          = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
+        .field
+          .controll
+            = f.label :reader, class: 'label'
+            - @users.each.with_index do |user,i|
+              .checkbox
+                = f.check_box  :user_ids, {multiple: true}, user.id, nil
+                = user.username
+        .field
+          = f.label :images, class: 'label'
+          = f.file_field :images, multiple: true
+          - if @record.images.present?
+            p 現在登録されている画像（削除するものはチェックしてください）
+            - record.images.each do |image|
+              = f.check_box :image_ids, {multiple: true}, image.id, false
+              = image_tag image, size:"100x100"
+        .field
+          = f.label :body, class: 'label'
+          = f.text_area :body, placeholder: "今回は〜", class: 'textarea'
+        .selected_form
+        .has-text-centered
+          = f.submit class: 'button is-primary'

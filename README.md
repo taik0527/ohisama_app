@@ -1,24 +1,32 @@
-# README
+# お話し会おひさま専用活動記録アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## URL
 
-Things you may want to cover:
+### どういうサイトか
+母が所属する読み聞かせの会の活動記録つけるアプリ。
 
-* Ruby version
 
-* System dependencies
+### 何ができるのか
+活動記録の投稿ができる
+お話し会で所有している蔵書の登録ができる
 
-* Configuration
+### アピールポイント
+小さなコミュニティで使うアプリのため、招待制にした
 
-* Database creation
+## ER図
 
-* Database initialization
+## 使用技術
 
-* How to run the test suite
+* Ruby 3.0.2
+* Ruby on Rails 6.1.4
+* MySQL2 0.5
+* AWS
+* CircleCi CI/CD
+* GoogleBooksAPI
 
-* Services (job queues, cache servers, search engines, etc.)
+## 機能一覧
+* ユーザー登録、ログイン機能
+* ユーザー招待機能
+* 書籍登録機能
+* 活動記録投稿機能
 
-* Deployment instructions
-
-* ...
