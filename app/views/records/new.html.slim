@@ -10,7 +10,7 @@
     .column.is-half.is-offset-one-quarter
       = render 'records/search_form', object: @search_form
       .results_area
-      .columns.is-mobile.is-multiline
+      .selected_area.columns
       = form_with url: records_path, local: true do |f|
         .field
           = f.label :date, class: 'label'

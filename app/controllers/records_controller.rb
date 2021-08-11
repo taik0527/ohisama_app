@@ -125,7 +125,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.permit(:date, :classroom, :images, :body)
+    params.require(:record).permit(:date, :classroom, :images, :body)
   end
 
   # def record_form_params

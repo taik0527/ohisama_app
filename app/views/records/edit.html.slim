@@ -6,8 +6,8 @@
         | 活動記録編集
 
 .section
-  .container
-    .culumns
+  .columns
+    .column.is-half.is-offset-one-quarter
       = render 'records/search_form', object: @search_form
       .results_area
       .selected_field
@@ -20,7 +20,7 @@
           = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
         .field
           .controll
-            = f.label :reader, class: 'label'
+            = f.label :manager, class: 'label'
             - @users.each.with_index do |user,i|
               .checkbox
                 = f.check_box  :user_ids, {multiple: true}, user.id, nil

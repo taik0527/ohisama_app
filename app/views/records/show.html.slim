@@ -6,20 +6,26 @@
 
 .section
   .columns
-    .column
+    .column.is-half.is-offset-one-quarter
       .card
         .card-content
           .content
-            = @record.date
+            p class='title is-4' = @record.date
             br
-            = @record.classroom
+            p
+              | 学級 : 
+              = @record.classroom
             - if @record.users.present?
-              p 担当:
-              - @record.users.each do |user|
-                = user.username
-                br
+              p
+                | 担当 : 
+                - @record.users.each do |user|
+                  = user.username + " "
           .content
-            = @record.body
+            p
+              | 備考 : 
+              = @record.body
+          - @record.images.each do |image|
+            = image_tag image
           .content.has-text-right
             = link_to '編集', edit_record_path(@record), class: 'button is-primary is-small'
             = link_to '削除', record_path(@record), method: :delete, data: { confirm: "記録を削除します。よろしいですか？"}, class: 'button is-danger is-small'

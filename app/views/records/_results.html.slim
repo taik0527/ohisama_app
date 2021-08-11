@@ -1,5 +1,13 @@
-.field
-  - @books.each do |book|
-    = link_to select_records_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
-      .controll
-        = book.title
+- @books.each do |book|
+  = link_to select_records_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
+    .box
+      .media
+        .media-left
+          = image_tag book.image, size: '100x100'
+        .media-content
+          .content
+            = book.title
+          .content
+            - if book.authors.present?
+              - book.authors.each do |author|
+                = author
