@@ -6,12 +6,12 @@
         | 活動記録投稿
 
 .section
-  .container
-    .culumns
+  .columns
+    .column.is-half.is-offset-one-quarter
       = render 'records/search_form', object: @search_form
       .results_area
-      .selected_field
-      = form_with url: records_path, class: 'culumn', local: true do |f|
+      .columns.is-mobile.is-multiline
+      = form_with url: records_path, local: true do |f|
         .field
           = f.label :date, class: 'label'
           = f.date_field :date, class: 'input'
@@ -20,19 +20,23 @@
           = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
         .field
           .controll
-            = f.label :reader, class: 'label'
+            = f.label :manager, class: 'label'
             - @users.each.with_index do |user,i|
-              .checkbox
-                = f.check_box  :user_ids, {multiple: true}, user.id, nil
-                = user.username
+              .tile.is-vertical
+                .checkbox
+                  = f.check_box  :user_ids, {multiple: true}, user.id, nil
+                  = user.username
         .field
           = f.label :images, class: 'label'
-          = f.file_field :images, multiple: true
-          - if @record.images.present?
-            p 現在登録されている画像（削除するものはチェックしてください）
-            - record.images.each do |image|
-              = f.check_box :image_ids, {multiple: true}, image.id, false
-              = image_tag image, size:"100x100"
+          #file-js-example.file.has-name
+            label.file-label
+              = f.file_field :images, multiple: true, class: 'file-input'
+              span.file-cta
+                span.file-label
+                  | 画像を選択してください
+              span.file-name
+                | 選択されていません
+          
         .field
           = f.label :body, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea'

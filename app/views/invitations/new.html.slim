@@ -5,9 +5,9 @@
       h1.title
         | ユーザー招待フォーム
 .section
-  .container
-    .culumns
-      = form_with model: @invitation, class: 'card-body', local: true do |f|
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = form_with model: @invitation, local: true do |f|
         .field
           = f.label :email, class: 'label'
           = f.email_field :email, class: 'input'

@@ -5,21 +5,23 @@
         | 活動記録一覧
 .has-text-centered
   = link_to '活動記録の投稿', new_record_path, class: 'button is-primary'
+
 .section
-  .container
-    - @records.each do |record|
-      = link_to record_path(record)
-        .columns
-          .column
-            .card
-              .card-content
-                .media
-                  .media-content
-                    p class="title is-4" = record.date
-                    p class="subtitle is-6" = record.classroom
-                .content
-                  - if record.users.present?
-                    p 担当:
-                    - record.users.each do |user|
-                      = user.username
-                      br
+  .columns
+    .column.is-half.is-offset-one-quarter
+      - @records.each do |record|
+        = link_to record_path(record)
+          .columns
+            .column
+              .card
+                .card-content
+                  .media
+                    .media-content
+                      p class="title is-4" = record.date
+                      p class="subtitle is-6" = record.classroom
+                  .content
+                    - if record.users.present?
+                      p 担当:
+                      - record.users.each do |user|
+                        = user.username
+                        br

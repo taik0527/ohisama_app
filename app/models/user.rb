@@ -3,7 +3,6 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :admin, presence: true
 
   has_many :user_records
   has_many :records, through: :user_records

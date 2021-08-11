@@ -6,9 +6,9 @@
         | ユーザー編集
 
 .section
-  .container
-    .culumns
-      = form_with model: @user, class: 'culumn', local: true do |f|
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = form_with model: @user, local: true do |f|
         .field
           = f.label :username, class: 'label'
           = f.text_field :username, class: 'input'

@@ -5,9 +5,9 @@
         | ログイン
 
 .section
-  .container
-    .culumns
-      = form_with scope: :session, class: 'card-body', local: true do |f|
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = form_with scope: :session, local: true do |f|
         .field
           = f.label :email, 'メールアドレス', class: 'label'
           = f.email_field :email, class: 'input'

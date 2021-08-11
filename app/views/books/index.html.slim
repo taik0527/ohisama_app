@@ -3,20 +3,23 @@
     .container.has-text-centered
       h1.title
         | 蔵書一覧
+
 .has-text-centered
   = link_to '蔵書の登録', new_book_path, class: 'button is-primary'
+  
 .section
-  .container
-    - @books.each do |book|
-      .box
-        .media
-          .media-left
-            = image_tag book.image, size: '100x100', class: 'image'
-          .media-content
-            .content
-              .title.is-5
-                = book.title
-            .content
-              - book.authors.each do |author|
-                = author.name
-            = link_to '削除', book, method: :delete, data: { confirm: "蔵書「#{book.title}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'
+  .columns
+    .column.is-half.is-offset-one-quarter
+      - @books.each do |book|
+        .box
+          .media
+            .media-left
+              = image_tag book.image, size: '100x100', class: 'image'
+            .media-content
+              .content
+                .title.is-5
+                  = book.title
+              .content
+                - book.authors.each do |author|
+                  = author.name
+              = link_to '削除', book, method: :delete, data: { confirm: "蔵書「#{book.title}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'

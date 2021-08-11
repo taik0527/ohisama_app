@@ -1,7 +1,6 @@
-.culumns
-  = form_with url: search_books_path, class: 'culumn', method: :get, local: false do |f|
-    .field.is-grouped
-      .control.is-expanded
-      = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword
-      .control
-        = f.submit '検索', class: 'button is-primary'
+= form_with model: @search_form, url: search_books_path, method: :get, local: false do |f|
+  .field.is-grouped
+    .control.is-expanded
+    = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword
+    .control
+      = f.submit '検索', class: 'button is-primary'

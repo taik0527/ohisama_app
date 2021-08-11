@@ -83,7 +83,7 @@ class BooksController < ApplicationController
   private
 
   def search_books_params
-    params.permit(:keyword)
+    params.require(:search_books_form).permit(:keyword)
   end
 
 end

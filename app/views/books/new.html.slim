@@ -4,5 +4,7 @@
       h1.title
         | 蔵書の登録
 
-= render 'search_form', object: @search_form
-.results_area
+.columns
+  .column.is-half.is-offset-one-quarter
+    = render 'search_form', object: @search_form
+    .results_area

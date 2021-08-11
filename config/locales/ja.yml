@@ -9,11 +9,10 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
-      book: 本
+      book: 書籍
       author: 著者
       invitation: 招待
       record: 記録
-    # モデルごとの属性
     attributes:
       user:
         username: 名前
@@ -33,6 +32,10 @@ ja:
         body: 本文
         classroom: 学級
         date: 日にち
+        manager: 担当者
+        images: 画像
+      SearchBooksForm: 
+        book: 書籍
   attributes:
     created_at: 作成日時
     updated_at: 更新日時

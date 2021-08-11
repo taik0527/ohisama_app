@@ -1,5 +1,4 @@
 .field
-  p 選択してください
   - @books.each do |book|
     = link_to select_records_path(:title => book.title, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
       .controll
