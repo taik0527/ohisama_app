@@ -23,7 +23,6 @@
 ## インフラ構成図
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/a6943af94cdf2e7126cf7807f4d5cd55.png)](https://gyazo.com/a6943af94cdf2e7126cf7807f4d5cd55)
 
 
 ## 機能一覧

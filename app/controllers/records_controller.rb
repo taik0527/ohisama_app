@@ -48,7 +48,7 @@ class RecordsController < ApplicationController
           @record.books << book # 被ってる
         else
           @google_book = GoogleBook.new_from_id(google_books_api_id)
-          @book = Book.new(title: @google_book.title, google_books_api_id: google_books_api_id)
+          @book = Book.new(title: @google_book.title, publisher: @google_book.publisher, google_books_api_id: google_books_api_id)
           image_url = @google_book.image
           # 表紙画像があればそれを入れる
           if image_url.present?

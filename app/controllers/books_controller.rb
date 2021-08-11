@@ -1,7 +1,7 @@
 require 'open-uri'
 class BooksController < ApplicationController
   def index
-    @books = Book.where(storage: true)
+    @books = Book.where(storage: true).page(params[:page]).per(10)
   end
 
   def new
@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   def select
     @title = params[:title]
     @authors = params[:authors]
+    @publisher = params[:publisher]
     @google_books_api_id = params[:google_books_api_id]
     @image = params[:image]
   end
@@ -40,7 +41,7 @@ class BooksController < ApplicationController
       end
     # bookとauthorの保存処理
     else
-      @book = Book.new(title: @google_book.title, google_books_api_id: google_books_api_id, storage: true)
+      @book = Book.new(title: @google_book.title, publisher: @google_book.publisher, google_books_api_id: google_books_api_id, storage: true)
       authors = @google_book.authors
       image_url = @google_book.image
       if image_url != '/assets/no_image.jpeg'

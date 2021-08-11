@@ -14,7 +14,11 @@
           .media
             .media-content
               = user.username
-            - if current_user.admin? 
+            - if current_user.admin?
               - unless user.admin?
                 .has-text-right
                   = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'
+  .columns
+    .column.is-half.is-offset-one-quarter
+      .has-text-centered
+        = paginate @users

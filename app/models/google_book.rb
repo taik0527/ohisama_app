@@ -7,6 +7,7 @@ class GoogleBook
   
     attribute :google_books_api_id, :string
     attribute :authors
+    attribute :publisher, :string
     attribute :image, :string
     attribute :title, :string
   
@@ -22,6 +23,7 @@ class GoogleBook
         new(
           google_books_api_id: @item['id'],
           authors: @volume_info['authors'],
+          publisher: @volume_info['publisher'],
           image: image_url,
           title: @volume_info['title'],
         )
@@ -52,14 +54,6 @@ class GoogleBook
         else
           return '/assets/no_image.jpeg'
         end
-      end
-    end
-  
-    def find_book_or_save
-      if Book.find_by(google_books_api_id: google_books_api_id) || save
-        Book.find_by(google_books_api_id: google_books_api_id)
-      else
-        false
       end
     end
   end

@@ -8,9 +8,15 @@
           .title.is-5
             = @title
         .content
-          - if authors.present?
-            - authors.each do |author|
-              = author
+            p
+              | 著者 : 
+              - if @authors.present?
+                - @authors.each do |author|
+                  = author + " "
+        .content
+            p
+              | 出版社 : 
+              = @publisher
 
 .container.has-text-centered
   = form_with url: books_path, local: true do |f|
