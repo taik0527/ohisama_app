@@ -1,3 +1,4 @@
+- set_meta_tags title: '記録一覧ページ'
 .hero
   .hero-body
     .container.has-text-centered
@@ -21,7 +22,7 @@
                       p class="subtitle is-6" = record.classroom
                   .content
                     - if record.users.present?
-                      p 担当:
-                      - record.users.each do |user|
-                        = user.username
-                        br
+                      p 
+                        |  担当 : 
+                        - record.users.each do |user|
+                          = user.username + " "

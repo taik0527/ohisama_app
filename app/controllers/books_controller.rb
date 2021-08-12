@@ -26,22 +26,13 @@ class BooksController < ApplicationController
     # 定義
     google_books_api_id = params[:google_books_api_id]
     @google_book = GoogleBook.new_from_id(google_books_api_id)
+    @book = Book.find_or_initialize_by(google_books_api_id: google_books_api_id)
 
-    # もしレコードに同じ本があれば既に登録済みですとエラーを出す
-    if Book.where(google_books_api_id: google_books_api_id).count >= 1
-      @book = Book.find_by(google_books_api_id: google_books_api_id)
-      # storageがtrueだったら登録済み
-      if @book.storage
-        redirect_to new_book_path, notice: '既に登録済みです'
-      # storageがfalseだったらtrueにして保存
-      else
-        @book.storage = true
-        @book.save
-        redirect_to books_path, notice: '蔵書に登録しました'
-      end
-    # bookとauthorの保存処理
-    else
-      @book = Book.new(title: @google_book.title, publisher: @google_book.publisher, google_books_api_id: google_books_api_id, storage: true)
+    # もしレコードが新しいインスタンスだったら
+    if @book.new_record?
+      @book.title =  @google_book.title
+      @book.publisher = @google_book.publisher
+      @book.storage = true
       authors = @google_book.authors
       image_url = @google_book.image
       if image_url != '/assets/no_image.jpeg'
@@ -71,7 +62,14 @@ class BooksController < ApplicationController
       else
         redirect_to new_book_path, alert: '登録できません'
       end
-      
+    else # @bookが既存だったら
+      if @book.storage # storageがtrueだったら登録済み
+        redirect_to new_book_path, notice: '既に登録済みです'
+      else # storageがfalseだったらtrueにして保存
+        @book.storage = true
+        @book.save
+        redirect_to books_path, notice: '蔵書に登録しました'
+      end
     end
   end
 

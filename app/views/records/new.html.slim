@@ -1,3 +1,4 @@
+- set_meta_tags title: '記録投稿ページ'
 = render 'shared/error_messages', object: @record
 .hero
   .hero-body
@@ -21,11 +22,10 @@
         .field
           .controll
             = f.label :manager, class: 'label'
-            - @users.each.with_index do |user,i|
-              .tile.is-vertical
-                .checkbox
-                  = f.check_box  :user_ids, {multiple: true}, user.id, nil
-                  = user.username
+            = f.collection_check_boxes :user_ids, User.all, :id, :username do |user|
+              .tile.is-vertical 
+                = user.check_box
+                = user.label
         .field
           = f.label :images, class: 'label'
           #file-js-example.file.has-name

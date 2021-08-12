@@ -42,13 +42,11 @@ class RecordsController < ApplicationController
       end
       # google_books_api_idsの数だけ回す
       google_books_api_ids.each do |google_books_api_id|
-        # もしapi_idがレコードにあったらそれと紐づける
-        if Book.where(google_books_api_id: google_books_api_id).count >= 1
-          book = Book.where(google_books_api_id: google_books_api_id)
-          @record.books << book # 被ってる
-        else
-          @google_book = GoogleBook.new_from_id(google_books_api_id)
-          @book = Book.new(title: @google_book.title, publisher: @google_book.publisher, google_books_api_id: google_books_api_id)
+        @google_book = GoogleBook.new_from_id(google_books_api_id)
+        @book = Book.find_or_initialize_by(google_books_api_id: google_books_api_id)
+        if @book.new_record? # 新規データなら保存
+          @book.title = @google_book.title
+          @book.publisher = @google_book.publisher
           image_url = @google_book.image
           # 表紙画像があればそれを入れる
           if image_url.present?
@@ -58,7 +56,6 @@ class RecordsController < ApplicationController
           else
             @book.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpeg')), filename: 'no_image.jpeg')
           end
-          # bookを保存
           if @book.save
             authors = @google_book.authors
             # もし著者が空でなければ
@@ -82,8 +79,10 @@ class RecordsController < ApplicationController
               end
             end
           # recordとbookの紐付け
-          @record.books << @book #被ってる
+          @record.books << @book
           end
+        else # 既存ならそのレコードと紐付ける
+          @record.books << @book
         end
       end
       redirect_to records_path, notice: '記録を投稿しました'

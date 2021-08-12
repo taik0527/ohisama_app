@@ -1,3 +1,4 @@
+- set_meta_tags title: '記録詳細ページ'
 .hero
   .hero-body
     .container.has-text-centered
@@ -26,6 +27,12 @@
               = @record.body
           - @record.images.each do |image|
             = image_tag image
+          .content
+            p
+              | 書籍 : 
+              - @record.books.each do |book|
+                = book.title
+                = image_tag book.image
           .content.has-text-right
             = link_to '編集', edit_record_path(@record), class: 'button is-primary is-small'
             = link_to '削除', record_path(@record), method: :delete, data: { confirm: "記録を削除します。よろしいですか？"}, class: 'button is-danger is-small'
