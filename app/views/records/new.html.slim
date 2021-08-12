@@ -23,7 +23,7 @@
           .controll
             = f.label :manager, class: 'label'
             = f.collection_check_boxes :user_ids, User.all, :id, :username do |user|
-              .tile.is-vertical 
+              .tile.is-vertical
                 = user.check_box
                 = user.label
         .field

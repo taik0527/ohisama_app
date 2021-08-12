@@ -10,6 +10,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap';
 import "jquery"
+import "./bulma.js"
 
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
