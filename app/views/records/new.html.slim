@@ -1,5 +1,5 @@
 - set_meta_tags title: '記録投稿ページ'
-= render 'shared/error_messages', object: @record
+= render 'shared/error_messages', object: @record_form
 .hero
   .hero-body
     .container.has-text-centered
@@ -12,7 +12,9 @@
       = render 'records/search_form', object: @search_form
       .results_area
       .selected_area.columns
-      = form_with url: records_path, local: true do |f|
+      = form_with model: @record_form, url: records_path, local: true do |f|
+        .field
+          .selected_form
         .field
           = f.label :date, class: 'label'
           = f.date_field :date, class: 'input'
@@ -22,7 +24,7 @@
         .field
           .controll
             = f.label :manager, class: 'label'
-            = f.collection_check_boxes :user_ids, User.all, :id, :username do |user|
+            = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false do |user|
               .tile.is-vertical
                 = user.check_box
                 = user.label
@@ -40,6 +42,7 @@
         .field
           = f.label :body, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea'
-        .selected_form
         .has-text-centered
           = f.submit class: 'button is-primary'
+
+= javascript_pack_tag 'file'
