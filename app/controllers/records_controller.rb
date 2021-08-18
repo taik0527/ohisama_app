@@ -2,7 +2,7 @@ require 'open-uri'
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[show update edit destroy]
   def index
-    @records = Record.all.order(date: "DESC")
+    @records = Record.all.order(date: "DESC").page(params[:page]).per(10)
   end
 
   def new

@@ -26,3 +26,7 @@
                         |  担当 : 
                         - record.users.each do |user|
                           = user.username + " "
+  .columns
+    .column.is-half.is-offset-one-quarter
+      .has-text-centered
+        = paginate @records
