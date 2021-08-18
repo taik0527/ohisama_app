@@ -1,7 +1,9 @@
-| $('.selected_area').append("#{j render('selected_book', title: @title, google_books_api_id: @google_books_api_id, image: @image)}");
+| $('.selected_area').append("#{j render('selected_book', object: @google_book)}");
 | var input = document.createElement("input");
 | input.setAttribute("type", "hidden");
 | input.setAttribute("name", "record_form[google_books_api_ids][]");
-| input.setAttribute("value", "#{@google_books_api_id}" );
+| input.setAttribute("value", "#{@google_book.google_books_api_id}" );
 | input.setAttribute("id", "record_form_google_book_api_ids" );
 | $('.selected_form').append(input);
+| var modal = document.getElementById("my-modal");
+| modal.classList.toggle('is-active');

@@ -5,31 +5,38 @@
     .container.has-text-centered
       h1.title
         | 活動記録投稿
-
+#my-modal.modal
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title 検索結果
+      button.delete aria-label="close" data-target="my-modal" 
+    section.modal-card-body
+      .results_area
+    footer.modal-card-foot
 .section
   .columns
     .column.is-half.is-offset-one-quarter
       = render 'records/search_form', object: @search_form
-      .results_area
-      .selected_area.columns
+      br
+      .selected_area
       = form_with model: @record_form, url: records_path, local: true do |f|
         .field
           .selected_form
         .field
-          = f.label :date, class: 'label'
+          = f.label :日付, class: 'label'
           = f.date_field :date, class: 'input'
         .field
-          = f.label :classroom, class: 'label'
+          = f.label :担当学級, class: 'label'
           = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
         .field
           .controll
-            = f.label :manager, class: 'label'
+            = f.label :担当者, class: 'label'
             = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false do |user|
-              .tile.is-vertical
                 = user.check_box
-                = user.label
+                = user.label + "　"
         .field
-          = f.label :images, class: 'label'
+          = f.label :画像, class: 'label'
           #file-js-example.file.has-name
             label.file-label
               = f.file_field :images, multiple: true, class: 'file-input'
@@ -40,9 +47,10 @@
                 | 選択されていません
           
         .field
-          = f.label :body, class: 'label'
+          = f.label :備考欄, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea'
         .has-text-centered
           = f.submit class: 'button is-primary'
 
 = javascript_pack_tag 'file'
+= javascript_pack_tag 'modal'

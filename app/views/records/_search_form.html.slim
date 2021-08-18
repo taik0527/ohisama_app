@@ -1,5 +1,5 @@
 = form_with model: @search_form, url: search_records_path, method: :get, local: false do |f|
-  = f.label :書籍検索（ここから書籍を検索、選択してください）, class: 'label'
+  = f.label :読んだ絵本（ここから読んだ書籍を検索、選択してください）, class: 'label'
   .field.is-grouped
     .control.is-expanded
     = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword

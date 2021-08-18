@@ -9,6 +9,14 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :select
+      get :edit_search
+      get :edit_select
+      post :date
+      post :classroom
+      post :manager
+      post :body
+      post :images
+      delete :destroy_book
     end
   end
   resources :books, only: %i[new create index destroy] do

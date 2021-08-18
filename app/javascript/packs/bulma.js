@@ -19,21 +19,7 @@ if (document.location.hostname !== 'localhost') {
   }
 }
 
-$(document).ready(function () {
-  $("#open").on("click", function () {
-    $("div.modal").addClass("is-active");
-  })
-
-  $("#close, div.modal-background").on("click", function () {
-    $("div.modal").removeClass("is-active");
-  })
-});
-
 $(function() {
-  $('.modal-background, .modal-close').click(function() {
-    $('html').removeClass('is-clipped');
-    $(this).parent().removeClass('is-active');
-  });
   $('.theme-switcher').change(function(e) {
     if (e.target.value) {
       window.location.href = '/bulmaswatch/' + e.target.value;

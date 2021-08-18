@@ -8,7 +8,6 @@ class RecordsController < ApplicationController
   def new
     @record_form = RecordForm.new
     @search_form = SearchBooksForm.new
-    @books = GoogleBook.new
   end
 
   def search
@@ -17,12 +16,36 @@ class RecordsController < ApplicationController
   end
 
   def select
-    @title = params[:title]
-    @google_books_api_id = params[:google_books_api_id]
-    @image = params[:image]
-    if @image.nil?
-      @image = '/assets/no_image.jpeg'
+    @google_book = GoogleBook.new_from_id(params[:google_books_api_id])
+  end
+
+  def edit_search
+    @search_form = SearchBooksForm.new(keyword: params[:keyword])
+    @books = GoogleBook.search(@search_form.keyword)
+    @record = Record.find(params[:record_id])
+  end
+  
+  def edit_select
+    @record = Record.find(params[:record_id])
+    if Book.exists?(google_books_api_id: params[:google_books_api_id]) #既存の場合
+      book = Book.find_by(google_books_api_id: params[:google_books_api_id])
+      if BookRecord.exists?(book_id: book.id, record_id: @record.id)
+        flash.now[:danger] = "保存済みです"
+      else # 紐づいていない場合
+        @record.books << book # 紐づける
+      end
+    else # 既存じゃない場合
+      @google_book = GoogleBook.new_from_id(params[:google_books_api_id])
+      @google_book.save
+      book = Book.find_by(google_books_api_id: params[:google_books_api_id])
+      @record.books << book
     end
+  end
+
+  def destroy_book
+    record_book = BookRecord.find_by(record_id: params[:record_id], book_id: params[:book_id])
+    record_book.destroy
+    @record = Record.find(params[:record_id])
   end
 
   def create
@@ -30,11 +53,9 @@ class RecordsController < ApplicationController
     if @record_form.save
       redirect_to records_path, notice: '記録を投稿しました'
     else
-      @record = Record.new
       @search_form = SearchBooksForm.new
-      @users = User.all
       flash.now[:danger] = "投稿できません"
-      render :edit
+      render :new
     end
   end
   
@@ -42,23 +63,49 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @users = User.all
+    @record_form = RecordForm.new
     @search_form = SearchBooksForm.new
-    @books = GoogleBook.new
+  end
+
+  def date
+    @record = Record.find(params[:record_id])
+    @record.date = params[:date]
+    @record.save
+  end
+
+  def body
+    @record = Record.find(params[:record_id])
+    @record.body = params[:body]
+    @record.save
+  end
+
+  def manager
+    @record = Record.find(params[:record_id])
+    # 紐付けを外す処理
+    userrecords = UserRecord.where(record_id: params[:record_id])
+    userrecords.each do |userrecord|
+      userrecord.destroy
+    end
+    # 紐付け直す処理
+    params[:user_ids].each do |user_id|
+      user = User.find(user_id)
+      @record.users << user
+    end
+  end
+
+  def classroom
+    @record = Record.find(params[:record_id])
+    @record.classroom = params[:classroom]
+    @record.save
+  end
+
+  def images
+    @record = Record.find(params[:record_id])
+    @record.images = params[:images]
+    @record.save
   end
 
   def update
-    if @record.update(record_params)
-      #　ここで本の更新と読み手の更新も行わないといけない
-      user_ids.each do |user_id|
-        user = User.find(user_id)
-        @record.users << user
-      end
-      redirect_to record_path(@record), notice: "記録を更新しました。"
-    else
-      flash.now[:danger] = "更新できません"
-      render :edit
-    end
   end
 
   def destroy
@@ -74,6 +121,10 @@ class RecordsController < ApplicationController
 
   def search_books_params
     params.require(:search_books_form).permit(:keyword)
+  end
+
+  def search_record_id_params
+    params.require(:search_books_form).permit(:record_id)
   end
 
   def set_record

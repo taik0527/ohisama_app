@@ -1,5 +1,5 @@
 - set_meta_tags title: '記録編集ページ'
-= render 'shared/error_messages', object: @record
+= render 'shared/error_messages', object: @record_form
 .hero
   .hero-body
     .container.has-text-centered
@@ -9,36 +9,77 @@
 .section
   .columns
     .column.is-half.is-offset-one-quarter
-      = render 'records/search_form', object: @search_form
+      = form_with url: date_records_path, local: false do |f|
+        = f.label :日付, class: 'label'
+        .field.is-grouped
+          .control.is-expanded
+          = f.hidden_field :record_id, :value => @record.id
+          = f.date_field :date, class: 'input', value: @record.date
+          .control
+            = f.submit '更新', class: 'button is-primary'
+      br
+      = form_with url: classroom_records_path, local: false do |f|
+        = f.label :担当学級, class: 'label'
+        .field.is-grouped
+          .control.is-expanded
+          = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input', value: @record.classroom
+          = f.hidden_field :record_id, :value => @record.id
+          .control
+            = f.submit '更新', class: 'button is-primary'
+      .success_classroom
+      br
+      = form_with url: manager_records_path, local: false do |f|
+        = f.label :担当者, class: 'label'
+        .field.is-grouped
+          = f.hidden_field :record_id, :value => @record.id
+          .control.is-expanded
+            = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false, checked: @record.users.pluck(:id) do |user|
+              = user.check_box
+              = user.label + "　"
+          .control
+            = f.submit '更新', class: 'button is-primary'
+      br
+      = form_with url: edit_search_records_path, method: :get, local: false do |f|
+        = f.label :読んだ本（ここから読んだ書籍を検索、選択してください）, class: 'label'
+        = f.hidden_field :record_id, :value => @record.id
+        .field.is-grouped
+          .control.is-expanded
+          = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword
+          .control
+            = f.submit '検索', class: 'button is-primary'
       .results_area
-      .selected_field
-      = form_with url: record_path, class: 'culumn', local: true do |f|
+      br
+      .box
+        .selected_area
+          = render 'records/selected', object: @record
+      
+      = form_with url: body_records_path, local: false do |f|
+        = f.label :備考欄, class: 'label'
+        .field.is-grouped
+          = f.hidden_field :record_id, :value => @record.id
+          .control.is-expanded
+            = f.text_area :body, placeholder: "今回は〜", class: 'textarea', value: @record.body
+          .control
+            = f.submit '更新', class: 'button is-primary'
+      br
+      = form_with url: images_records_path, local: false do |f|
         .field
-          = f.label :date, class: 'label'
-          = f.date_field :date, class: 'input'
-        .field
-          = f.label :classroom, class: 'label'
-          = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
-        .field
-          .controll
-            = f.label :manager, class: 'label'
-            - @users.each.with_index do |user,i|
-              .checkbox
-                = f.check_box  :user_ids, {multiple: true}, user.id, nil
-                = user.username
-        .field
-          = f.label :images, class: 'label'
-          = f.file_field :images, multiple: true
-          - if @record.images.present?
-            p 現在登録されている画像（削除するものはチェックしてください）
-            - record.images.each do |image|
-              = f.check_box :image_ids, {multiple: true}, image.id, false
-              = image_tag image, size:"100x100"
-        .field
-          = f.label :body, class: 'label'
-          = f.text_area :body, placeholder: "今回は〜", class: 'textarea'
-        .selected_form
-        .has-text-centered
-          = f.submit class: 'button is-primary'
-
+          = f.label :画像（複数選択可） , class: 'label'
+          #file-js-example.file.has-name
+            label.file-label
+              = f.file_field :images, multiple: true, class: 'file-input'
+              span.file-cta
+                span.file-label
+                  | 画像を選択してください
+              span.file-name
+                | 選択されていません
+            = f.hidden_field :record_id, :value => @record.id
+            = f.submit '更新', class: 'button is-primary'
+      br
+      div class='title is-6' 保存されている画像
+      .box
+        .images_area
+          = render 'records/images_area', object: @record
+                
 = javascript_pack_tag 'file'
+

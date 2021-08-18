@@ -1,0 +1,13 @@
+- @books.each do |book|
+  = link_to edit_select_records_path(:record_id => @record.id, :google_books_api_id => book.google_books_api_id), remote: true
+    .box
+      .media
+        .media-left
+          = image_tag book.image, size: '100x100'
+        .media-content
+          .content
+            = book.title
+          .content
+            - if book.authors.present?
+              - book.authors.each do |author|
+                = author
