@@ -1,17 +1,25 @@
-h1 ユーザー一覧
-
-.container
-  .row
-    .col-md-6.col-12.offset-md-3.mb-3
-      .card
-        .card-body
-          .mb-3
-            - @users.each do |user|
-              tr
-                td= user.username
-                td
-                  - if current_user.admin? 
-                    - unless user.admin?
-                      = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
-      - if current_user.admin?
-        = link_to 'メンバーの招待', new_invitation_path, class: 'btn btn-primary mr-3'
+- set_meta_tags title: 'ユーザー一覧ページ'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ユーザー一覧
+.has-text-centered
+  - if current_user.admin?
+    = link_to 'ユーザーの招待', new_invitation_path, class: 'button is-primary'
+.section
+  .columns
+    .column.is-half.is-offset-one-quarter
+      - @users.each do |user|
+        .box
+          .media
+            .media-content
+              = user.username
+            - if current_user.admin?
+              - unless user.admin?
+                .has-text-right
+                  = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.username}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'
+  .columns
+    .column.is-half.is-offset-one-quarter
+      .has-text-centered
+        = paginate @users

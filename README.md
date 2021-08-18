@@ -1,24 +1,33 @@
-# README
+## お話し会おひさま活動記録アプリ
+お話し会おひさまのための活動記録管理アプリです。
+ユーザーは会所有の蔵書を登録＆確認し、読み聞かせ活動の記録を作成することができます。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 作成した目的
+「いつもワードで作っていたお話し会の活動記録を簡単に作成できるようにしたい」
+「お話し会の蔵書をメンバーがいつでも手元で確認できるようにしたい」
+という母の問題を解決するために作成した。
 
-Things you may want to cover:
+## 使い方
 
-* Ruby version
+## URL
 
-* System dependencies
+## 使用技術
 
-* Configuration
+* Ruby 3.0.2
+* Ruby on Rails 6.1.4
+* MySQL2
+* AWS
+* CircleCi CI/CD
+* GoogleBooksAPI
 
-* Database creation
+## インフラ構成図
 
-* Database initialization
+## ER図
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## 機能一覧
+* ユーザー招待、登録、ログイン機能
+* 活動記録のCRUD
+* GoogleBooksAPIとの連携機能
+* 蔵書の検索、登録機能
 
-* Deployment instructions
-
-* ...

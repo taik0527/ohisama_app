@@ -1,8 +1,19 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-white
-  = link_to 'ohisama', root_path, class: 'navbar-brand'
-  button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button"
-    span.navbar-toggler-icon
-    ul.navbar-nav.mt-2.mt-lg-0
-      li.nav-item= link_to 'メンバー一覧', users_path, class: 'nav-link'
-      li.nav-item= link_to current_user.username, edit_user_path(current_user), class: 'nav-link'
-      li.nav-item= link_to 'ログアウト', logout_path, class: 'nav-link', method: :delete
+section
+  div
+    nav.navbar
+      .container
+        .navbar-brand
+          = link_to root_path, class: 'navbar-item is-family-sans-serif mt-6'
+            h3.title.is-3.has-text-light ohisama
+          span.navbar-burger.burger data-target="navbarMenuHero1" 
+            span
+            span
+            span
+        - if current_user
+          #navbarMenuHero1.navbar-menu
+            .navbar-end
+              = link_to '活動記録一覧', records_path, class: 'navbar-item is-active'
+              = link_to '蔵書一覧', books_path, class: 'navbar-item is-active'
+              = link_to 'ユーザー一覧', users_path, class: 'navbar-item is-active'
+              = link_to current_user.username, edit_user_path(current_user), class: 'navbar-item is-active'
+              = link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-item is-active'

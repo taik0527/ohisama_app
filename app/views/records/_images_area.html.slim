@@ -1,0 +1,5 @@
+.columns.is-mobile.is-multiline
+  - @record.images.each do |image|
+    .column.is-6-mobile.is-6-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      .card
+        = image_tag image

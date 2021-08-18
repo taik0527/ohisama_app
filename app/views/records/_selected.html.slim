@@ -1,0 +1,7 @@
+.columns.is-mobile.is-multiline
+  - @record.books.each do |book|
+    .column.is-4-mobile.is-4-tablet.is-4-desktop.is-4-widescreen.is-3-fullhd
+      .content
+        = image_tag book.image, size: '100x100'
+      .content
+        = link_to '削除', destroy_book_records_path(:google_books_api_id => book.google_books_api_id, :record_id => @record.id, :book_id => book.id), method: :delete, class: 'button is-danger is-small', remote: true

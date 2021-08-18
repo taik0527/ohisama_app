@@ -1,0 +1,28 @@
+- set_meta_tags title: '記録一覧ページ'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録一覧
+.has-text-centered
+  = link_to '新規投稿', new_record_path, class: 'button is-primary'
+
+.section
+  .columns
+    .column.is-half.is-offset-one-quarter
+      - @records.each do |record|
+        = link_to record_path(record)
+          .columns
+            .column
+              .card
+                .card-content
+                  .media
+                    .media-content
+                      p class="title is-4" = record.date
+                      p class="subtitle is-6" = record.classroom
+                  .content
+                    - if record.users.present?
+                      p 
+                        |  担当 : 
+                        - record.users.each do |user|
+                          = user.username + " "

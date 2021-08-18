@@ -2,15 +2,18 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def new
-    # クエリパラメータのtokenがinvitation内のレコードにあるか判定
     if @invitation = Invitation.find_by(token: params[:token])
-      @user = User.new
+      if @invitation.expired_at > Time.now
+        @user = User.new
+      else
+        render  'error/error_404'
+      end
     else
-      # クエリパラメータの文字列が間違ったURLなので、適切なエラー画面を表示したい
+      render  'error/error_404'
     end
   end
 
@@ -18,13 +21,9 @@ class UsersController < ApplicationController
     if @invitation = Invitation.find_by(token_params)
       @user = User.new(user_params.merge(email: @invitation.email))
       if @user.save
-        # 使用したレコードを消去
         @invitation.destroy
-        # ログイン状態にする
         session[:user_id] = @user.id
-        # 登録完了メールの送信
         UserMailer.user_created(@user).deliver_now
-        # 画面遷移
         redirect_to root_path, success: 'サインアップが完了しました'
       else
         redirect_to request.referer, notice: "サインアップに失敗しました"
@@ -41,7 +40,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_update_params)
-      redirect_to users_path, success: 'プロフィールを更新しました'
+      redirect_to users_path, notice: 'プロフィールを更新しました'
     else
       flash.now['danger'] = 'プロフィールの更新に失敗しました'
       render :edit
@@ -49,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(id: params[:id])
+    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path, notice: "ユーザー「#{@user.username}」を削除しました。"
   end
