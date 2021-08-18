@@ -3,7 +3,7 @@
     .box
       .media
         .media-left
-          = link_to select_books_path(:title => book.title, :publisher => book.publisher, :authors => book.authors, :google_books_api_id => book.google_books_api_id, :image => book.image), remote: true
+          = link_to select_books_path(:google_books_api_id => book.google_books_api_id), remote: true
             = image_tag book.image, size: '100x100', class: 'image'
         .media-content
           .content

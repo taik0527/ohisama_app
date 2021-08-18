@@ -15,11 +15,7 @@ class BooksController < ApplicationController
   end
 
   def select
-    @title = params[:title]
-    @authors = params[:authors]
-    @publisher = params[:publisher]
-    @google_books_api_id = params[:google_books_api_id]
-    @image = params[:image]
+    @google_book = GoogleBook.new_from_id(params[:google_books_api_id])
   end
 
   def create

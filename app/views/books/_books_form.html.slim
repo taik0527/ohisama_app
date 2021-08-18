@@ -2,23 +2,23 @@
   .box
     .media
       .media-left
-        = image_tag @image, size: '100x100', class: 'image'
+        = image_tag @google_book.image, size: '100x100', class: 'image'
       .media-content
         .content
           .title.is-5
-            = @title
+            = @google_book.title
         .content
             p
               | 著者 : 
-              - if @authors.present?
-                - @authors.each do |author|
+              - if @google_book.authors.present?
+                - @google_book.authors.each do |author|
                   = author + " "
         .content
             p
               | 出版社 : 
-              = @publisher
+              = @google_book.publisher
 
 .container.has-text-centered
   = form_with url: books_path, local: true do |f|
-    = f.hidden_field :google_books_api_id, value: @google_books_api_id
+    = f.hidden_field :google_books_api_id, value: @google_book.google_books_api_id
     = f.submit '登録', class: 'button is-primary'
