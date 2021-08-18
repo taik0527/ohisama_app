@@ -1,0 +1,56 @@
+- set_meta_tags title: '記録投稿ページ'
+= render 'shared/error_messages', object: @record_form
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録投稿
+#my-modal.modal
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title 検索結果
+      button.delete aria-label="close" data-target="my-modal" 
+    section.modal-card-body
+      .results_area
+    footer.modal-card-foot
+.section
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = render 'records/search_form', object: @search_form
+      br
+      .selected_area
+      = form_with model: @record_form, url: records_path, local: true do |f|
+        .field
+          .selected_form
+        .field
+          = f.label :日付, class: 'label'
+          = f.date_field :date, class: 'input'
+        .field
+          = f.label :担当学級, class: 'label'
+          = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input'
+        .field
+          .controll
+            = f.label :担当者, class: 'label'
+            = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false do |user|
+                = user.check_box
+                = user.label + "　"
+        .field
+          = f.label :画像, class: 'label'
+          #file-js-example.file.has-name
+            label.file-label
+              = f.file_field :images, multiple: true, class: 'file-input'
+              span.file-cta
+                span.file-label
+                  | 画像を選択してください
+              span.file-name
+                | 選択されていません
+          
+        .field
+          = f.label :備考欄, class: 'label'
+          = f.text_area :body, placeholder: "今回は〜", class: 'textarea'
+        .has-text-centered
+          = f.submit class: 'button is-primary'
+
+= javascript_pack_tag 'file'
+= javascript_pack_tag 'modal'

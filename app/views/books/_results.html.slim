@@ -1,0 +1,21 @@
+.section
+  - @books.each do |book|
+    .box
+      .media
+        .media-left
+          = link_to select_books_path(:google_books_api_id => book.google_books_api_id), remote: true
+            = image_tag book.image, size: '100x100', class: 'image'
+        .media-content
+          .content
+            .title.is-5
+              = book.title
+          .content
+            p
+              | 著者 : 
+              - if book.authors.present?
+                - book.authors.each do |author|
+                  = author + " "
+          .content
+            p
+              | 出版社 : 
+              = book.publisher

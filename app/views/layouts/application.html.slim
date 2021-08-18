@@ -4,20 +4,17 @@ html
     title
       | ohisamaApp
     meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
     = csp_meta_tag
+    link rel="stylesheet" href="https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css"
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
-
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand ohisamaApp
-
-      ul.navbar-nav.ml-auto
-        - if current_user
-          li.nav-item= link_to 'メンバー一覧', users_path, class: 'nav-link'
-          li.nav-item= link_to current_user.username, edit_user_path(current_user), class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', logout_path, class: 'nav-link', method: :delete
+    = render 'shared/header' if current_user
     = render 'shared/flash_messages'
-    
     = yield
+
+    .hero-foot
+      nav.tabs
+        .container

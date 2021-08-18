@@ -1,0 +1,7 @@
+meta:
+  site: ohanshi_app
+  title: ohanashi_app
+  description: お話し会おひさま専用のアプリケーションです。活動の記録や蔵書の確認ができます。
+  og:
+    type: website
+    image_path: ogp.png

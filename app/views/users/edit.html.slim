@@ -1,10 +1,17 @@
-.login-register-form
-  .login-register-form-inner
-    .card.mb-3
-      = form_with model: @user, class: 'card-body', local: true do |f|
-        = render 'shared/error_messages', object: @user
-        .form-group
-          = f.label :username, class: 'bmd-label-floating'
-          = f.text_field :username, class: 'form-control'
+- set_meta_tags title: 'ユーザー編集ページ'
+= render 'shared/error_messages', object: @user
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ユーザー編集
 
-        = f.submit '更新', class: 'btn btn-raised btn-primary'
+.section
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = form_with model: @user, local: true do |f|
+        .field
+          = f.label :username, class: 'label'
+          = f.text_field :username, class: 'input'
+        .has-text-centered
+          = f.submit '更新', class: 'button is-primary'

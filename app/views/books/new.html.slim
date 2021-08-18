@@ -1,0 +1,11 @@
+- set_meta_tags title: '蔵書登録ページ'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 蔵書の登録
+
+.columns
+  .column.is-half.is-offset-one-quarter
+    = render 'search_form', object: @search_form
+    .results_area
