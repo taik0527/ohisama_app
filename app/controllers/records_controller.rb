@@ -63,7 +63,6 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @record_form = RecordForm.new
     @search_form = SearchBooksForm.new
   end
 
@@ -81,13 +80,12 @@ class RecordsController < ApplicationController
 
   def manager
     @record = Record.find(params[:record_id])
-    # 紐付けを外す処理
+    user_ids = params[:user_ids]
     userrecords = UserRecord.where(record_id: params[:record_id])
     userrecords.each do |userrecord|
       userrecord.destroy
     end
-    # 紐付け直す処理
-    params[:user_ids].each do |user_id|
+    user_ids.each do |user_id|
       user = User.find(user_id)
       @record.users << user
     end

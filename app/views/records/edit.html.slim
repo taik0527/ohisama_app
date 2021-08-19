@@ -1,10 +1,19 @@
 - set_meta_tags title: '記録編集ページ'
-= render 'shared/error_messages', object: @record_form
 .hero
   .hero-body
     .container.has-text-centered
       h1.title
         | 活動記録編集
+
+#my-modal.modal
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title 検索結果
+      button.delete aria-label="close" data-target="my-modal" 
+    section.modal-card-body
+      .results_area
+    footer.modal-card-foot
 
 .section
   .columns
@@ -26,7 +35,6 @@
           = f.hidden_field :record_id, :value => @record.id
           .control
             = f.submit '更新', class: 'button is-primary'
-      .success_classroom
       br
       = form_with url: manager_records_path, local: false do |f|
         = f.label :担当者, class: 'label'
@@ -47,11 +55,10 @@
           = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword
           .control
             = f.submit '検索', class: 'button is-primary'
-      .results_area
       br
       .box
         .selected_area
-          = render 'records/selected', object: @record
+          = render 'records/edit_selected_books', object: @record
       
       = form_with url: body_records_path, local: false do |f|
         = f.label :備考欄, class: 'label'
@@ -82,4 +89,5 @@
           = render 'records/images_area', object: @record
                 
 = javascript_pack_tag 'file'
+= javascript_pack_tag 'modal'
 
