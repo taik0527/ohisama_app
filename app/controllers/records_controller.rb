@@ -71,7 +71,7 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:record_id])
     user_ids = params[:user_ids]
     userrecords = UserRecord.where(record_id: params[:record_id])
-    if @record.update(date: params[:date], body: params[:body], classroom: params[:classroom], images: params[:images])
+    if @record.update(record_params)
       userrecords.each(&:destroy)
       user_ids.each do |user_id|
         user = User.find(user_id)
@@ -94,6 +94,10 @@ class RecordsController < ApplicationController
 
   def record_form_params
     params.require(:record_form).permit(:date, :classroom, :body, google_books_api_ids: [], user_ids: [], images: [])
+  end
+
+  def record_params
+    params.permit(:date, :classroom, :body, images: [])
   end
 
   def search_books_params

@@ -55,7 +55,6 @@
                   | 画像を選択してください
               span.file-name
                 | 選択されていません
-          = f.hidden_field :default_images, :value => @record.images
         .field
           = f.label :備考欄, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea', value: @record.body
