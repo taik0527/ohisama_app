@@ -6,15 +6,15 @@
           = image_tag book.image, size: '100x100'
         .media-content
           .content
-            .title.is-5
+            .title.is-6
               = book.title
           .content
-            p
+            p class='title is-6 has-text-weight-medium'
               | 著者 : 
               - book.authors.each do |author|
                 = author.name
           .content
-            p
+            p class='title is-6 has-text-weight-medium'
               | 出版社 : 
               = book.publisher
         .media-right

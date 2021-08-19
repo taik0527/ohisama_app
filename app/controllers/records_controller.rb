@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[show update edit destroy]
   def index
-    @records = Record.all.order(date: "DESC").page(params[:page]).per(10)
+    @records = Record.all.order(date: 'DESC').page(params[:page]).per(10)
   end
 
   def new
@@ -19,18 +21,35 @@ class RecordsController < ApplicationController
     @google_book = GoogleBook.new_from_id(params[:google_books_api_id])
   end
 
+  def create
+    @record_form = RecordForm.new(record_form_params)
+    if @record_form.save
+      redirect_to records_path, notice: '記録を投稿しました'
+    else
+      @search_form = SearchBooksForm.new
+      flash.now[:danger] = '投稿できません'
+      render :new
+    end
+  end
+
+  def show; end
+
+  def edit
+    @search_form = SearchBooksForm.new
+  end
+
   def edit_search
     @search_form = SearchBooksForm.new(keyword: params[:keyword])
     @books = GoogleBook.search(@search_form.keyword)
     @record = Record.find(params[:record_id])
   end
-  
+
   def edit_select
     @record = Record.find(params[:record_id])
-    if Book.exists?(google_books_api_id: params[:google_books_api_id]) #既存の場合
+    if Book.exists?(google_books_api_id: params[:google_books_api_id]) # 既存の場合
       book = Book.find_by(google_books_api_id: params[:google_books_api_id])
       if BookRecord.exists?(book_id: book.id, record_id: @record.id)
-        flash.now[:danger] = "保存済みです"
+        flash.now[:danger] = '保存済みです'
       else # 紐づいていない場合
         @record.books << book # 紐づける
       end
@@ -48,49 +67,27 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:record_id])
   end
 
-  def create
-    @record_form = RecordForm.new(record_form_params)
-    if @record_form.save
-      redirect_to records_path, notice: '記録を投稿しました'
-    else
-      @search_form = SearchBooksForm.new
-      flash.now[:danger] = "投稿できません"
-      render :new
-    end
-  end
-  
-  def show
-  end
-
-  def edit
-    @search_form = SearchBooksForm.new
-  end
-
   def update
     @record = Record.find(params[:record_id])
     user_ids = params[:user_ids]
     userrecords = UserRecord.where(record_id: params[:record_id])
-    images = params[:images]
-    images = @record.image if images.present?
     if @record.update(date: params[:date], body: params[:body], classroom: params[:classroom], images: params[:images])
-      userrecords.each do |userrecord| # 紐付け処理
-        userrecord.destroy
-      end
+      userrecords.each(&:destroy)
       user_ids.each do |user_id|
         user = User.find(user_id)
         @record.users << user
       end
       redirect_to record_path, notice: '記録を更新しました'
     else
-      @record = Record.find(params[:record_id])
-      flash.now[:danger] = "更新できません"
+      @search_form = SearchBooksForm.new
+      flash.now[:danger] = '更新できません'
       render :edit
     end
   end
 
   def destroy
     @record.destroy
-    redirect_to records_path, notice: "記録を削除しました。"
+    redirect_to records_path, notice: '記録を削除しました。'
   end
 
   private

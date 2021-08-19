@@ -1,4 +1,5 @@
 - set_meta_tags title: '記録編集ページ'
+= render 'shared/error_messages', object: @record
 .hero
   .hero-body
     .container.has-text-centered
@@ -53,12 +54,13 @@
                 span.file-label
                   | 画像を選択してください
               span.file-name
-                = @record.images
-            = f.hidden_field :record_id, :value => @record.id
+                | 選択されていません
+          = f.hidden_field :default_images, :value => @record.images
         .field
           = f.label :備考欄, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea', value: @record.body
         .has-text-centered
+          = f.hidden_field :record_id, :value => @record.id
           = f.submit '更新', class: 'button is-primary'
                 
 = javascript_pack_tag 'file'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book < ApplicationRecord
   has_one_attached :image
 
@@ -8,5 +10,4 @@ class Book < ApplicationRecord
   has_many :records, through: :book_records
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
-
 end
