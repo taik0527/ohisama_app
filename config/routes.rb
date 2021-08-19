@@ -11,11 +11,6 @@ Rails.application.routes.draw do
       get :select
       get :edit_search
       get :edit_select
-      post :date
-      post :classroom
-      post :manager
-      post :body
-      post :images
       delete :destroy_book
     end
   end

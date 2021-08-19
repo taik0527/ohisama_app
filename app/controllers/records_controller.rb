@@ -66,44 +66,26 @@ class RecordsController < ApplicationController
     @search_form = SearchBooksForm.new
   end
 
-  def date
-    @record = Record.find(params[:record_id])
-    @record.date = params[:date]
-    @record.save
-  end
-
-  def body
-    @record = Record.find(params[:record_id])
-    @record.body = params[:body]
-    @record.save
-  end
-
-  def manager
+  def update
     @record = Record.find(params[:record_id])
     user_ids = params[:user_ids]
     userrecords = UserRecord.where(record_id: params[:record_id])
-    userrecords.each do |userrecord|
-      userrecord.destroy
+    images = params[:images]
+    images = @record.image if images.present?
+    if @record.update(date: params[:date], body: params[:body], classroom: params[:classroom], images: params[:images])
+      userrecords.each do |userrecord| # 紐付け処理
+        userrecord.destroy
+      end
+      user_ids.each do |user_id|
+        user = User.find(user_id)
+        @record.users << user
+      end
+      redirect_to record_path, notice: '記録を更新しました'
+    else
+      @record = Record.find(params[:record_id])
+      flash.now[:danger] = "更新できません"
+      render :edit
     end
-    user_ids.each do |user_id|
-      user = User.find(user_id)
-      @record.users << user
-    end
-  end
-
-  def classroom
-    @record = Record.find(params[:record_id])
-    @record.classroom = params[:classroom]
-    @record.save
-  end
-
-  def images
-    @record = Record.find(params[:record_id])
-    @record.images = params[:images]
-    @record.save
-  end
-
-  def update
   end
 
   def destroy
