@@ -17,8 +17,8 @@
     footer.modal-card-foot
     
 .section
-  .columns
-    .column.is-half.is-offset-one-quarter
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
       = render 'records/search_form', object: @search_form
       br
       .selected_area
@@ -35,8 +35,9 @@
           .controll
             = f.label :担当者, class: 'label'
             = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false do |user|
-                = user.check_box
-                = user.label + "　"
+              = user.check_box
+              = user.label
+              br
         .field
           = f.label :画像, class: 'label'
           #file-js-example.file.has-name
