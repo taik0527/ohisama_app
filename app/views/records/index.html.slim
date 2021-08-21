@@ -8,21 +8,31 @@
   = link_to '新規投稿', new_record_path, class: 'button is-primary'
 
 .section
-  .columns
-    .column.is-half.is-offset-one-quarter
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
       - @records.each do |record|
         = link_to record_path(record)
-          .columns
-            .column
-              .card
-                .card-content
-                  .media
-                    .media-content
-                      p class="title is-4" = record.date
-                      p class="subtitle is-6" = record.classroom
-                  .content
-                    - if record.users.present?
+          .box
+            .media
+              .media-content
+                p class="title is-4" = record.date
+                p class="subtitle is-6" = record.classroom
+                .content
+                  - if record.users.present?
+                    .tile
                       p 
-                        |  担当 : 
-                        - record.users.each do |user|
-                          = user.username + " "
+                        |  担当者 :
+                    .tile
+                      - record.users.each do |user|
+                        = user.username + " "
+              .media-right
+                .columns.is-mobile
+                  - record.books.each_with_index do |book, i|
+                    .column
+                      .box
+                        = image_tag book.image, size: '50x50'
+                    - break if i == 1
+  .columns
+    .column.is-half.is-offset-one-quarter
+      .has-text-centered
+        = paginate @records

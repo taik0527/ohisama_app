@@ -6,8 +6,8 @@
       h1.title
         | ユーザー招待フォーム
 .section
-  .columns
-    .column.is-half.is-offset-one-quarter
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
       = form_with model: @invitation, local: true do |f|
         .field
           = f.label :email, class: 'label'

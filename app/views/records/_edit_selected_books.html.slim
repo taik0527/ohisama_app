@@ -1,0 +1,21 @@
+- @record.books.each do |book|
+  .card
+    .card-content
+      .media
+        .media-left
+          = image_tag book.image, size: '100x100'
+        .media-content
+          .content
+            .title.is-6
+              = book.title
+          .content
+            p class='title is-6 has-text-weight-medium'
+              | 著者 : 
+              - book.authors.each do |author|
+                = author.name
+          .content
+            p class='title is-6 has-text-weight-medium'
+              | 出版社 : 
+              = book.publisher
+        .media-right
+          = link_to '削除', destroy_book_records_path(:record_id => @record.id, :book_id => book.id), method: :delete, class: 'button is-danger is-small', remote: true

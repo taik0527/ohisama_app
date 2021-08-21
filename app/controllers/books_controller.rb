@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 class BooksController < ApplicationController
   def index
@@ -8,7 +10,7 @@ class BooksController < ApplicationController
     @search_form = SearchBooksForm.new
     @books = GoogleBook.new
   end
-  
+
   def search
     @search_form = SearchBooksForm.new(search_books_params)
     @books = GoogleBook.search(@search_form.keyword)
@@ -25,7 +27,7 @@ class BooksController < ApplicationController
       # 既存の本が蔵書かどうかを判定
       if @book.storage
         redirect_to new_book_path, alert: '登録済みです'
-      else 
+      else
         @book.storage = true
         @book.save
         redirect_to books_path, notice: '蔵書に登録しました'
@@ -38,7 +40,7 @@ class BooksController < ApplicationController
         @book.storage = true
         @book.save
         redirect_to books_path, notice: '蔵書に登録しました'
-      else 
+      else
         redirect_to new_book_path, alert: '登録できません'
       end
     end
@@ -55,5 +57,4 @@ class BooksController < ApplicationController
   def search_books_params
     params.require(:search_books_form).permit(:keyword)
   end
-
 end

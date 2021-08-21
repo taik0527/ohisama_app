@@ -8,8 +8,8 @@
   - if current_user.admin?
     = link_to 'ユーザーの招待', new_invitation_path, class: 'button is-primary'
 .section
-  .columns
-    .column.is-half.is-offset-one-quarter
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
       - @users.each do |user|
         .box
           .media

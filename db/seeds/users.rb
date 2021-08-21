@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 puts 'Start inserting seed "users" ...'
 10.times do
   user = User.new(

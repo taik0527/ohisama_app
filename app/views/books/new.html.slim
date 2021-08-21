@@ -4,8 +4,8 @@
     .container.has-text-centered
       h1.title
         | 蔵書の登録
-
-.columns
-  .column.is-half.is-offset-one-quarter
-    = render 'search_form', object: @search_form
-    .results_area
+.section
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      = render 'search_form', object: @search_form
+      .results_area
