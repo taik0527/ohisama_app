@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 
 class InvitationsController < ApplicationController
-  before_action :admin_required, only: [:new, :create]
+  before_action :admin_required, only: %i[new create]
 
   def new
     @invitation = Invitation.new

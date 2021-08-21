@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecordForm
   include ActiveModel::Model
   include ActiveModel::Attributes
@@ -21,15 +23,13 @@ class RecordForm
       google_books_api_ids.each do |google_books_api_id|
         # 既存かどうかの判定
         if Book.exists?(google_books_api_id: google_books_api_id)
-          book = Book.find_by(google_books_api_id: google_books_api_id)
-          record.books << book
         else
           google_book = GoogleBook.new_from_id(google_books_api_id)
           # 保存処理
           google_book.save
-          book = Book.find_by(google_books_api_id: google_books_api_id)
-          record.books << book
         end
+        book = Book.find_by(google_books_api_id: google_books_api_id)
+        record.books << book
       end
     end
     true
@@ -45,5 +45,4 @@ class RecordForm
       images: images
     )
   end
-
 end

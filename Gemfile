@@ -28,12 +28,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'addressable'
 gem 'annotate'
-gem "bulma-rails"
 gem 'bootstrap'
+gem 'bulma-rails'
 gem 'config'
 gem 'font-awesome-sass'
 gem 'html2slim'
+gem 'httparty'
 gem 'jquery-rails'
+gem 'json'
 gem 'kaminari'
 gem 'mailcatcher'
 gem 'meta-tags'
@@ -42,8 +44,6 @@ gem 'rename'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'sorcery'
-gem 'json'
-gem 'httparty'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

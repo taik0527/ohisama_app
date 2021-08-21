@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: %i[new create]
 
   def index
     @users = User.all.page(params[:page]).per(10)
@@ -26,10 +28,10 @@ class UsersController < ApplicationController
         UserMailer.user_created(@user).deliver_now
         redirect_to root_path, success: 'サインアップが完了しました'
       else
-        redirect_to request.referer, notice: "サインアップに失敗しました"
+        redirect_to request.referer, notice: 'サインアップに失敗しました'
       end
     else
-      redirect_to request.referer, notice: "サインアップに失敗しました"
+      redirect_to request.referer, notice: 'サインアップに失敗しました'
     end
   end
 
