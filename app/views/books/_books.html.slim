@@ -1,0 +1,21 @@
+- @books.each do |book|
+  .box
+    .media
+      .media-left
+        = image_tag book.image, size: '100x100', class: 'image'
+      .media-content
+        .content
+          .title.is-5
+            = book.title
+        .content
+          p class='title is-6 has-text-weight-normal'
+            | 著者 : 
+            - book.authors.each do |author|
+              = author.name + "　"
+        .content
+          p class='title is-6 has-text-weight-normal'
+            | 出版社 : 
+            = book.publisher
+      .media-right
+        .content
+          = link_to '削除', book, method: :delete, data: { confirm: "蔵書「#{book.title}」を削除します。よろしいですか？"}, class: 'button is-danger is-small'

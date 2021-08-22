@@ -19,12 +19,12 @@
 .section
   .columns.is-centered
     .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
-      = form_with url: edit_search_records_path, method: :get, local: false do |f|
+      = form_with url: edit_search_google_records_path, method: :get, local: false do |f|
         = f.label :読んだ本（ここから読んだ書籍を検索、選択してください）, class: 'label'
         = f.hidden_field :record_id, :value => @record.id
         .field.is-grouped
           .control.is-expanded
-          = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input', value: @search_form.keyword
+          = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input'
           .control
             = f.submit '検索', class: 'button is-primary'
         .selected_area

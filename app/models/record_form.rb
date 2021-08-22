@@ -13,7 +13,11 @@ class RecordForm
   attribute :google_books_api_ids
 
   def save
+    return false unless valid?
+
     record = build_record
+    return false unless record.valid?
+
     ActiveRecord::Base.transaction do
       record.save
       user_ids.each do |user_id|
