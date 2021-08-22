@@ -10,14 +10,20 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @token = SecureRandom.base64(10)
-    @invitation = Invitation.new(invitation_params.merge(token: @token, expired_at: 24.hours.since))
-    if @invitation.save
-      UserMailer.invitation(@invitation).deliver_now
-      redirect_to users_path, success: 'ユーザーを招待しました'
-    else
-      flash.now[:danger] = '招待メールの送信に失敗しました'
+    if User.exists?(invitation_params)
+      flash.now[:danger] = 'ユーザー作成済みのメールアドレスです'
+      @invitation = Invitation.new
       render :new
+    else
+      @token = SecureRandom.base64(10)
+      @invitation = Invitation.new(invitation_params.merge(token: @token, expired_at: 24.hours.since))
+      if @invitation.save
+        UserMailer.invitation(@invitation).deliver_now
+        redirect_to users_path, notice: 'ユーザーを招待しました'
+      else
+        flash.now[:danger] = '招待メールが送信できません'
+        render :new
+      end
     end
   end
 

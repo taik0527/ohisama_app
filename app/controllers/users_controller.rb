@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    if @invitation = Invitation.find_by(token: params[:token])
+    if Invitation.exists?(token: params[:token])
+      @invitation = Invitation.find_by(token: params[:token])
       if @invitation.expired_at > Time.now
         @user = User.new
       else
@@ -20,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @invitation = Invitation.find_by(token_params)
+    if Invitation.exists?(token_params)
+      @invitation = Invitation.find_by(token_params)
       @user = User.new(user_params.merge(email: @invitation.email))
       if @user.save
         @invitation.destroy
