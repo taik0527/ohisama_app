@@ -13,8 +13,6 @@ class RecordForm
   attribute :google_books_api_ids
 
   def save
-    return false unless valid?
-
     record = build_record
     return false unless record.valid?
 
