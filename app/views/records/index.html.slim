@@ -4,35 +4,23 @@
     .container.has-text-centered
       h1.title
         | 活動記録一覧
+        
 .has-text-centered
   = link_to '新規投稿', new_record_path, class: 'button is-primary'
 
 .section
   .columns.is-centered
     .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
-      - @records.each do |record|
-        = link_to record_path(record)
-          .box
-            .media
-              .media-content
-                p class="title is-4" = record.date
-                p class="subtitle is-6" = record.classroom
-                .content
-                  - if record.users.present?
-                    .tile
-                      p 
-                        |  担当者 :
-                    .tile
-                      - record.users.each do |user|
-                        = user.username + " "
-              .media-right
-                .columns.is-mobile
-                  - record.books.each_with_index do |book, i|
-                    .column
-                      .box
-                        = image_tag book.image, size: '50x50'
-                    - break if i == 1
+      = form_with model: @search_form, url: search_records_path, method: :get, local: true do |f|
+        .field.is-grouped
+          .control.is-expanded
+          = f.text_field :keyword, placeholder: '担当者、担当学級、備考欄、読んだ本のタイトル', class: 'input'
+          .control
+            = f.submit '検索', class: 'button is-primary'
+      br
+      .results_area
+        = render 'records', object: @records
+
   .columns
     .column.is-half.is-offset-one-quarter
-      .has-text-centered
-        = paginate @records
+      = paginate @records
