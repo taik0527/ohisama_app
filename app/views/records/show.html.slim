@@ -46,12 +46,11 @@
           p class='title is-6'
             | 画像
         .columns.is-mobile.is-multiline
-          - @record.images.each do |image|
             .column.is-6-mobile.is-6-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
               .box
                 .media
                   .content
-                    = image_tag image
+                    = image_tag @record.image
         .content
           p class='title is-6'
             | 備考

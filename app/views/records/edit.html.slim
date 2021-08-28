@@ -45,15 +45,15 @@
             br
 
         .field
-          = f.label :画像（複数選択可） , class: 'label'
+          = f.label :画像, class: 'label'
           #file-js-example.file.has-name
             label.file-label
-              = f.file_field :images, multiple: true, class: 'file-input'
+              = f.file_field :image, class: 'file-input'
               span.file-cta
                 span.file-label
                   | 画像を選択してください
               span.file-name
-                | 選択されていません
+                = @record.image.filename
         .field
           = f.label :備考欄, class: 'label'
           = f.text_area :body, placeholder: "今回は〜", class: 'textarea', value: @record.body
