@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "バリデーション" do
+  describe 'バリデーション' do
     it 'ユーザー名は必須であること' do
       user = build(:user, username: nil)
       user.valid?
