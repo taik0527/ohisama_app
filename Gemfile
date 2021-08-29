@@ -26,12 +26,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 #
 
-gem 'addressable'
 gem 'annotate'
-gem 'bootstrap'
-gem 'bulma-rails'
 gem 'config'
-gem 'font-awesome-sass'
 gem 'html2slim'
 gem 'httparty'
 gem 'jquery-rails'
