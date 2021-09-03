@@ -69,6 +69,7 @@ GEM
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
@@ -130,6 +131,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.5, >= 1.5.2)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -398,11 +400,13 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bcrypt (~> 3.1.7)
+  bcrypt_pbkdf
   bootsnap (>= 1.4.4)
   byebug
   capistrano
   capybara (>= 3.26)
   config
+  ed25519
   factory_bot_rails
   faker
   html2slim

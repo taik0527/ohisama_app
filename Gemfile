@@ -68,6 +68,8 @@ group :development do
   gem 'rubocop-rails'
   gem 'spring'
   gem 'capistrano'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
