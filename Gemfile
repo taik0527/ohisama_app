@@ -26,12 +26,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 #
 
-gem 'addressable'
 gem 'annotate'
-gem 'bootstrap'
-gem 'bulma-rails'
 gem 'config'
-gem 'font-awesome-sass'
 gem 'html2slim'
 gem 'httparty'
 gem 'jquery-rails'
@@ -53,6 +49,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -63,13 +60,13 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
+  gem 'spring'
 end
 
 group :test do

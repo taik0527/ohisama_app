@@ -7,7 +7,7 @@ class RecordForm
 
   attribute :date, :date
   attribute :classroom, :string
-  attribute :images
+  attribute :image
   attribute :body, :string
   attribute :user_ids
   attribute :google_books_api_ids
@@ -44,7 +44,7 @@ class RecordForm
       date: date,
       classroom: classroom,
       body: body,
-      images: images
+      image: image
     )
   end
 end
