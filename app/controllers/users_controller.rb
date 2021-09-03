@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         render  'error/error_404'
       end
     else
-      render  'error/error_404'
+      render 'error/error_404'
     end
   end
 

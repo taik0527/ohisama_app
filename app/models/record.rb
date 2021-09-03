@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Record < ApplicationRecord
-  has_many_attached :images
+  has_one_attached :image
 
   validates :body, presence: true
   validates :classroom, presence: true

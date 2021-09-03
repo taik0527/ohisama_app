@@ -99,11 +99,11 @@ class RecordsController < ApplicationController
   private
 
   def record_form_params
-    params.require(:record_form).permit(:date, :classroom, :body, google_books_api_ids: [], user_ids: [], images: [])
+    params.require(:record_form).permit(:date, :classroom, :body, :image, google_books_api_ids: [], user_ids: [])
   end
 
   def record_params
-    params.permit(:date, :classroom, :body, images: [])
+    params.permit(:date, :classroom, :body, :image)
   end
 
   def search_form_params
