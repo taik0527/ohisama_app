@@ -1,0 +1,62 @@
+- set_meta_tags title: '記録詳細ページ'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録詳細
+
+.section
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      .box
+        .content
+          p class='title is-2' = @record.date
+          p class='title is-6'
+            | 担当学級
+          p class='title is-6 has-text-weight-medium'
+            = @record.classroom
+          - if @record.users.present?
+            p class='title is-6 '
+              | 担当者
+            p class='title is-6 has-text-weight-medium'
+              - @record.users.each do |user|
+                = user.username + " "
+        .content
+          p class='title is-6'
+            | 読んだ本
+          - @record.books.each do |book|
+           .box.is-marginless
+             .media
+                .media-left
+                  = image_tag book.image, size: '100x100'
+                .media-content
+                  .content
+                    .title.is-6
+                      = book.title
+                  .content
+                    p class='title is-6 has-text-weight-medium'
+                      | 著者 : 
+                      - book.authors.each do |author|
+                        = author.name + " "
+                  .content
+                    p class='title is-6 has-text-weight-medium'
+                      | 出版社 : 
+                      = book.publisher
+        .content
+          p class='title is-6'
+            | 画像
+        .columns.is-mobile.is-multiline
+            .column.is-6-mobile.is-6-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+              .box
+                .media
+                  .content
+                    = image_tag @record.image
+        .content
+          p class='title is-6'
+            | 備考
+          p class='title is-6 has-text-weight-medium'
+            = @record.body
+        .content.has-text-right
+          = link_to '編集', edit_record_path(@record), class: 'button is-primary is-small'
+          = link_to '削除', record_path(@record), method: :delete, data: { confirm: "記録を削除します。よろしいですか？"}, class: 'button is-danger is-small'
+            

@@ -1,0 +1,66 @@
+- set_meta_tags title: '記録編集ページ'
+= render 'shared/error_messages', object: @record
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | 活動記録編集
+
+#my-modal.modal
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title 検索結果
+      button.delete aria-label="close" data-target="my-modal" 
+    section.modal-card-body
+      .results_area
+    footer.modal-card-foot
+
+.section
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      = form_with url: edit_search_google_records_path, method: :get, local: false do |f|
+        = f.label :読んだ本（ここから読んだ書籍を検索、選択してください）, class: 'label'
+        = f.hidden_field :record_id, :value => @record.id
+        .field.is-grouped
+          .control.is-expanded
+          = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input'
+          .control
+            = f.submit '検索', class: 'button is-primary'
+        .selected_area
+          = render 'records/edit_selected_books', object: @record
+      br
+      = form_with url: record_path, method: :patch, local: true do |f|
+        .field
+          = f.label :日付, class: 'label'
+          = f.date_field :date, class: 'input', value: @record.date
+        .field
+          = f.label :担当学級, class: 'label'
+          = f.text_field :classroom, placeholder: "女川小学校○年○組", class: 'input', value: @record.classroom
+        .field
+          = f.label :担当者, class: 'label'
+          = f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false, checked: @record.users.pluck(:id) do |user|
+            = user.check_box
+            = user.label + "　"
+            br
+
+        .field
+          = f.label :画像, class: 'label'
+          #file-js-example.file.has-name
+            label.file-label
+              = f.file_field :image, class: 'file-input'
+              span.file-cta
+                span.file-label
+                  | 画像を選択してください
+              span.file-name
+                = @record.image.filename
+        .field
+          = f.label :備考欄, class: 'label'
+          = f.text_area :body, placeholder: "今回は〜", class: 'textarea', value: @record.body
+        .has-text-centered
+          = f.hidden_field :record_id, :value => @record.id
+          = f.submit '更新', class: 'button is-primary'
+                
+= javascript_pack_tag 'file'
+= javascript_pack_tag 'modal'
+

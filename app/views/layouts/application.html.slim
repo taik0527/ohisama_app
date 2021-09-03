@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | ohisamaApp
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = display_meta_tags(default_meta_tags)
+    = csrf_meta_tags
+    = csp_meta_tag
+    link rel="stylesheet" href="https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css"
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body
+    = render 'shared/header'
+    = render 'shared/flash_messages'
+    = yield
+
+    .hero-foot
+      nav.tabs
+        .container

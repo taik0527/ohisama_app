@@ -1,0 +1,18 @@
+.card
+  .card-content
+    .media
+      .media-left
+        = image_tag @google_book.image, size: '100x100'
+      .media-content
+        .content
+          .title.is-5
+            = @google_book.title
+        .content
+          p
+            | 著者 : 
+            - @google_book.authors.each do |author|
+              = author + " "
+        .content
+          p
+            | 出版社 : 
+            = @google_book.publisher

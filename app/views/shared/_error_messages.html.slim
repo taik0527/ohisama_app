@@ -1,0 +1,5 @@
+- if object.errors.any?
+  div class= ("notification is-danger")
+    - object.errors.full_messages.each do |msg|
+      = msg
+      br

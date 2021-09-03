@@ -1,0 +1,22 @@
+- @records.each do |record|
+  = link_to record_path(record)
+    .box
+      .media
+        .media-content
+          p class="title is-4" = record.date
+          p class="subtitle is-6" = record.classroom
+          .content
+            - if record.users.present?
+              .tile
+                p 
+                  |  担当者 :
+              .tile
+                - record.users.each do |user|
+                  = user.username + " "
+        .media-right
+          .columns.is-mobile
+            - record.books.each_with_index do |book, i|
+              .column
+                .box
+                  = image_tag book.image, size: '50x50'
+              - break if i == 1

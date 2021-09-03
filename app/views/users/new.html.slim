@@ -1,0 +1,24 @@
+- set_meta_tags title: 'ユーザー登録ページ'
+= render 'shared/error_messages', object: @user
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ユーザー登録
+
+.section
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      = form_with model: @user, local: true do |f|
+        = f.hidden_field(:token, value: @invitation.token)
+        .field
+          = f.label :username, class: 'label'
+          = f.text_field :username, class: 'input'
+        .field
+          = f.label :password, class: 'label'
+          = f.password_field :password, class: 'input'
+        .field
+          = f.label :password_confirmation, class: 'label'
+          = f.password_field :password_confirmation, class: 'input'
+        .has-text-centered
+          = f.submit '登録', class: 'button is-primary'

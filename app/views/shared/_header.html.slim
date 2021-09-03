@@ -1,0 +1,19 @@
+section
+  div
+    nav.navbar
+      .container
+        .navbar-brand
+          = link_to root_path, class: 'navbar-item is-family-sans-serif mt-6'
+            h3.title.is-3.has-text-light おひさまログ
+          span.navbar-burger.burger data-target="navbarMenuHero1" 
+            span
+            span
+            span
+        - if current_user
+          #navbarMenuHero1.navbar-menu
+            .navbar-end
+              = link_to '活動記録一覧', records_path, class: 'navbar-item is-active'
+              = link_to '蔵書一覧', books_path, class: 'navbar-item is-active'
+              = link_to 'ユーザー一覧', users_path, class: 'navbar-item is-active'
+              = link_to current_user.username, edit_user_path(current_user), class: 'navbar-item is-active'
+              = link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-item is-active'

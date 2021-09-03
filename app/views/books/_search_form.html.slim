@@ -1,0 +1,6 @@
+= form_with model: @search_form, url: search_google_books_path, method: :get, local: false do |f|
+  .field.is-grouped
+    .control.is-expanded
+    = f.text_field :keyword, placeholder: 'タイトル、著者名', class: 'input'
+    .control
+      = f.submit '検索', class: 'button is-primary'

@@ -1,0 +1,24 @@
+.section
+  .box
+    .media
+      .media-left
+        = image_tag @google_book.image, size: '100x100', class: 'image'
+      .media-content
+        .content
+          .title.is-5
+            = @google_book.title
+        .content
+            p
+              | 著者 : 
+              - if @google_book.authors.present?
+                - @google_book.authors.each do |author|
+                  = author + "　"
+        .content
+            p
+              | 出版社 : 
+              = @google_book.publisher
+
+.container.has-text-centered
+  = form_with url: books_path, local: true do |f|
+    = f.hidden_field :google_books_api_id, value: @google_book.google_books_api_id
+    = f.submit '登録', class: 'button is-primary'

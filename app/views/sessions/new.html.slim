@@ -1,0 +1,19 @@
+- set_meta_tags title: 'ログインページ'
+.hero
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        | ログイン
+
+.section
+  .columns.is-centered
+    .column.is-12-mobile.is-12-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
+      = form_with scope: :session, local: true do |f|
+        .field
+          = f.label :email, 'メールアドレス', class: 'label'
+          = f.email_field :email, class: 'input'
+        .field
+          = f.label :password, 'パスワード', class: 'label'
+          = f.password_field :password, class: 'input'
+        .has-text-centered
+          = f.submit 'ログイン', class: 'button is-primary'

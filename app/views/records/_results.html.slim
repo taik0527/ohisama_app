@@ -1,0 +1,25 @@
+.columns.is-gapless.is-multiline
+  - @books.each do |book|
+    .column.is-12-mobile.is-12-tablet.is-12-desktop.is-12-widescreen.is-12-fullhd
+      .card
+        .card-content
+          .media
+            .media-left
+              = image_tag book.image, size: '100x100'
+            .media-content
+              .content
+                .title.is-6
+                  = book.title
+              .content
+                p class='title is-6 has-text-weight-normal'
+                  | 著者 : 
+                  - if book.authors.present?
+                    - book.authors.each do |author|
+                      = author + " "
+              .content
+                p class='title is-6 has-text-weight-normal'
+                  | 出版社 : 
+                  = book.publisher
+            .media-right
+              .content
+                = link_to '選択', select_records_path(:google_books_api_id => book.google_books_api_id), class: 'button is-primary is-small', remote: true
