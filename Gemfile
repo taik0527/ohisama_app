@@ -67,7 +67,6 @@ group :development do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
-  gem 'spring'
   gem 'capistrano'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'

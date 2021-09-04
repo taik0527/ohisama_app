@@ -465,7 +465,6 @@ DEPENDENCIES
   selenium-webdriver
   slim-rails
   sorcery
-  spring
   spring-commands-rspec
   tzinfo-data
   web-console (>= 4.1.0)
