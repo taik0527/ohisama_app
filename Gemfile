@@ -33,6 +33,7 @@ gem 'httparty'
 gem 'jquery-rails'
 gem 'json'
 gem 'kaminari'
+gem 'mini_racer', platforms: :ruby
 gem 'meta-tags'
 gem 'rails-i18n'
 gem 'rename'
@@ -67,6 +68,15 @@ group :development do
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'spring'
+  gem 'capistrano'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-nginx'
+  gem 'capistrano-yarn'
 end
 
 group :test do
