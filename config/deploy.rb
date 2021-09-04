@@ -1,4 +1,4 @@
-lock "~> 3.14.0"
+lock "~> 3.16.0"
 
 set :application, "ohisama_app"
 set :repo_url, "git@github.com:taik0527/ohisama_app.git"
@@ -6,7 +6,7 @@ set :user, 'taiki'
 set :deploy_to, "/var/www/ohisama_app"
 set :linked_files, %w[config/master.key config/database.yml]
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets public/system vendor/bundle]
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_ruby, "3.0.2"
 set :puma_threds, [4, 16]
 set :puma_workers, 0
 set :puma_bind, "unix:///var/www/ohisama_app/shared/tmp/sockets/puma.sock"
