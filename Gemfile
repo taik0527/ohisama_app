@@ -50,7 +50,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'spring-commands-rspec'
+  # gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -67,6 +67,7 @@ group :development do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
+  # gem 'spring'
   gem 'capistrano'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
