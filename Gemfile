@@ -42,7 +42,7 @@ gem 'slim-rails'
 gem 'sorcery'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+# gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,7 +50,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'spring-commands-rspec'
+  # gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -67,7 +67,7 @@ group :development do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
-  gem 'spring'
+  # gem 'spring'
   gem 'capistrano'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
