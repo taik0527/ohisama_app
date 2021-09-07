@@ -415,6 +415,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  addressable
   annotate
   bcrypt (~> 3.1.7)
   bcrypt_pbkdf

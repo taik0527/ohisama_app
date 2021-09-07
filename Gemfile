@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 #
 
+gem 'addressable'
 gem 'annotate'
 gem 'config'
 gem 'html2slim'
