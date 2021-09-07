@@ -54,14 +54,14 @@ class GoogleBook
       if @volume_info['imageLinks'].present?
         @volume_info['imageLinks']['smallThumbnail']
       else
-        '/assets/no_image.jpeg'
+        '/no_image.jpeg'
       end
     end
   end
 
   def save
-    book = build_book # bookのインスタンス作る
-    if image != '/assets/no_image.jpeg' # この処理メソッド化したい
+    book = build_book
+    if image != '/no_image.jpeg'
       file = URI.open(image)
       book.image.attach(io: file, filename: "profile_image.#{file.content_type_parse.first.split('/').last}",
                         content_type: file.content_type_parse.first)
