@@ -2,6 +2,7 @@
 
 require 'net/https'
 require 'json'
+require 'addressable/uri'
 
 module GoogleBooksApi
   def url_of_creating_from_id(google_books_api_id)
