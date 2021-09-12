@@ -14,6 +14,7 @@ set :puma_state, "/var/www/ohisama_app/shared/tmp/pids/puma.state"
 set :puma_pid, "/var/www/ohisama_app/shared/tmp/pids/puma.pid"
 set :puma_access_log, "/var/www/ohisama_app/shared/log/puma.error.log"
 set :puma_error_log, "/var/www/ohisama_app/shared/log/puma.access.log"
+set :nginx_downstream_uses_ssl, true
 set :puma_preload_app, true
 set :pty, true
 
