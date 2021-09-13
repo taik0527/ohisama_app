@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def new
     if Invitation.exists?(token: params[:token])
       @invitation = Invitation.find_by(token: params[:token])
-      if @invitation.expired_at > Time.now
+      if @invitation.expired_at > Time.zone.now 
         @user = User.new
       else
         render  'error/error_404'
