@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
       @invitation = Invitation.new
       render :new
     else
-      @token = SecureRandom.base64(10)
+      @token = SecureRandom.hex(10)
       @invitation = Invitation.new(invitation_params.merge(token: @token, expired_at: 24.hours.since))
       if @invitation.save
         UserMailer.invitation(@invitation).deliver_now
