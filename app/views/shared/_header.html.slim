@@ -10,11 +10,11 @@ section
               span
               span
               span
-
-        #navbarMenuHero1.navbar-menu
-          .navbar-end
-            = link_to '活動記録一覧', records_path, class: 'navbar-item is-active'
-            = link_to '蔵書一覧', books_path, class: 'navbar-item is-active'
-            = link_to 'ユーザー一覧', users_path, class: 'navbar-item is-active'
-            = link_to current_user.username, edit_user_path(current_user), class: 'navbar-item is-active'
-            = link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-item is-active'
+        - if current_user
+          #navbarMenuHero1.navbar-menu
+            .navbar-end
+              = link_to '活動記録一覧', records_path, class: 'navbar-item is-active'
+              = link_to '蔵書一覧', books_path, class: 'navbar-item is-active'
+              = link_to 'ユーザー一覧', users_path, class: 'navbar-item is-active'
+              = link_to current_user.username, edit_user_path(current_user), class: 'navbar-item is-active'
+              = link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-item is-active'
