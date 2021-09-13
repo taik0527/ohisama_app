@@ -16,10 +16,16 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  config.action_mailer.perform_caching = true # falseをtrueに修正
-
-  config.action_mailer.default_url_options = { host: 'localhost:3000' } # 追加
-  config.action_mailer.delivery_method = :letter_opener_web # 追加
+  config.action_mailer.default_url_options = {  :host => 'https://onagawaohisama.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:"smtp.gmail.com",
+    domain: 'gmail.com',
+    port:587,
+    user_name: Rails.application.credentials.gmail[:user_name],
+    password: Rails.application.credentials.gmail[:password],
+    authentication: :login
+  } 
 
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
