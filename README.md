@@ -8,8 +8,20 @@
 という母の問題を解決するために作成した。
 
 ## 使い方
+画面の説明
+
+ログインページ
+活動記録一覧ページ
+活動記録の投稿ページ
+蔵書一覧ページ
+蔵書の新規登録ページ
+ユーザー一覧ページ
+ユーザーの招待ページ
+ユーザー編集ページ
+
 
 ## URL
+https://onagawaohisama.com
 
 ## 使用技術
 
@@ -20,10 +32,8 @@
 * CircleCi CI/CD
 * GoogleBooksAPI
 
-## インフラ構成図
-
 ## ER図
-
+[![Image from Gyazo](https://i.gyazo.com/b5de144e246aa189a95e3b8ee8d20851.png)](https://gyazo.com/b5de144e246aa189a95e3b8ee8d20851)
 
 ## 機能一覧
 * ユーザー招待、登録、ログイン機能
