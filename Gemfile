@@ -28,6 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'addressable'
 gem 'annotate'
+gem 'aws-sdk-s3', require: false
 gem 'config'
 gem 'html2slim'
 gem 'httparty'
@@ -35,15 +36,14 @@ gem 'jquery-rails'
 gem 'json'
 gem 'kaminari'
 gem 'listen'
-gem 'mini_racer', platforms: :ruby
 gem 'meta-tags'
+gem 'mini_magick'
+gem 'mini_racer', platforms: :ruby
 gem 'rails-i18n'
 gem 'rename'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'sorcery'
-gem 'mini_magick'
-gem 'aws-sdk-s3', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 # gem 'bootsnap', '>= 1.4.4', require: false
@@ -63,23 +63,23 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'faker'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'faker'
   gem 'rubocop'
   gem 'rubocop-rails'
   # gem 'spring'
-  gem 'capistrano'
-  gem 'ed25519'
   gem 'bcrypt_pbkdf'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
+  gem 'capistrano'
   gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
   gem 'capistrano-nginx'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
+  gem 'ed25519'
 end
 
 group :test do
