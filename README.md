@@ -24,7 +24,7 @@ https://onagawaohisama.com
 | 活動記録の投稿ページ | ユーザー一覧ページ |
 | :--- | :--- |
 | [![Image from Gyazo](https://i.gyazo.com/1956782160ccce315f5795c8d876792d.png)](https://gyazo.com/1956782160ccce315f5795c8d876792d) | [![Image from Gyazo](https://i.gyazo.com/8f560205687689d44d5d21bfd2d44d85.png)](https://gyazo.com/8f560205687689d44d5d21bfd2d44d85) |
-| 読んだ絵本をモーダル表示する | ユーザーの一覧を表示する。管理者ユーザーのみユーザーの削除ができる。 |
+| 活動記録を投稿することができる。 | ユーザーの一覧を表示する。管理者ユーザーのみユーザーの削除ができる。 |
   
 | ユーザーの招待ページ | ユーザー編集ページ |
 | :--- | :--- |
@@ -34,7 +34,7 @@ https://onagawaohisama.com
 | 蔵書一覧ページ | 蔵書の新規登録ページ |
 | :--- | :--- |
 | [![Image from Gyazo](https://i.gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c.png)](https://gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c) | [![Image from Gyazo](https://i.gyazo.com/0b00e2862ebb2517840effdcd9792f6e.png)](https://gyazo.com/0b00e2862ebb2517840effdcd9792f6e) |
-| おひさま会の蔵書を検索できる | 新しい蔵書を登録できる |
+| タイトルと著者名からおひさま会の蔵書を検索することができる。 | 新しい蔵書を登録することができる。キーワードを入力して検索ボタンを押すと、候補が表示されて選択、登録ができる。|
 
 ## 使用技術
 
