@@ -46,6 +46,7 @@
           p class='title is-6'
             | 画像
         .columns.is-mobile.is-multiline
+          - if @record.image.present?
             .column.is-6-mobile.is-6-tablet.is-6-desktop.is-6-widescreen.is-6-fullhd
               .box
                 .media
