@@ -33,7 +33,7 @@ ja:
         classroom: 学級
         date: 日にち
         manager: 担当者
-        images: 画像
+        image: 画像
   attributes:
     created_at: 作成日時
     updated_at: 更新日時
