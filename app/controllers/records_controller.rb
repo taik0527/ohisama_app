@@ -32,7 +32,7 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:record_id])
     user_ids = params[:user_ids]
     userrecords = UserRecord.where(record_id: params[:record_id])
-    if @record.update(record_params)
+    if user_ids.present? && @record.update(record_params)
       userrecords.each(&:destroy)
       user_ids.each do |user_id|
         user = User.find(user_id)
@@ -40,7 +40,7 @@ class RecordsController < ApplicationController
       end
       redirect_to record_path, notice: '記録を更新しました'
     else
-      @search_form = SearchBooksForm.new
+      @search_form = SearchForm.new
       flash.now[:danger] = '更新できません'
       render :edit
     end
