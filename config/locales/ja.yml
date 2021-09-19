@@ -34,8 +34,6 @@ ja:
         date: 日にち
         manager: 担当者
         images: 画像
-      SearchBooksForm: 
-        book: 書籍
   attributes:
     created_at: 作成日時
     updated_at: 更新日時

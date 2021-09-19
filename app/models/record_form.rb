@@ -12,9 +12,15 @@ class RecordForm
   attribute :user_ids
   attribute :google_books_api_ids
 
+  validates :user_ids, presence: true
+  validates :google_books_api_ids, presence: true
+  validates :body, presence: true
+  validates :date, presence: true
+  validates :classroom, presence: true
+
   def save
+    return false unless valid?
     record = build_record
-    return false unless record.valid?
 
     ActiveRecord::Base.transaction do
       record.save
