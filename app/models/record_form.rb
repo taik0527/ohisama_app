@@ -20,6 +20,7 @@ class RecordForm
 
   def save
     return false unless valid?
+
     record = build_record
 
     ActiveRecord::Base.transaction do

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RecordsController < ApplicationController
-
   def index
     @records = Record.all.order(date: 'DESC').page(params[:page]).per(10)
     @search_form = SearchForm.new
