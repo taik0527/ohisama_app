@@ -5,7 +5,7 @@ class Record < ApplicationRecord
 
   validates :body, presence: true
   validates :classroom, presence: true
-  validates :date, presence: true
+  validates :date, presence: true 
 
   has_many :user_records, dependent: :destroy
   has_many :users, through: :user_records
