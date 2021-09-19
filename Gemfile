@@ -44,6 +44,7 @@ gem 'rename'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'sorcery'
+gem 'pg'
 
 # Reduces boot times through caching; required in config/boot.rb
 # gem 'bootsnap', '>= 1.4.4', require: false
