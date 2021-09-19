@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-require 'open-uri'
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i[show update edit destroy]
-  before_action :set_search_form, only: %i[index new edit]
 
   def index
     @records = Record.all.order(date: 'DESC').page(params[:page]).per(10)
+    @search_form = SearchForm.new
   end
 
   def new
     @record_form = RecordForm.new
+    @search_form = SearchForm.new
   end
 
   def create
@@ -24,9 +23,14 @@ class RecordsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @record = Record.find(params[:id])
+  end
 
-  def edit; end
+  def edit
+    @record = Record.find(params[:id])
+    @search_form = SearchForm.new
+  end
 
   def update
     @record = Record.find(params[:record_id])
@@ -47,6 +51,7 @@ class RecordsController < ApplicationController
   end
 
   def destroy
+    @record = Record.find(params[:id])
     @record.destroy
     redirect_to records_path, notice: '記録を削除しました。'
   end
@@ -108,10 +113,6 @@ class RecordsController < ApplicationController
 
   def search_form_params
     params.require(:search_form).permit(:keyword)
-  end
-
-  def set_record
-    @record = Record.find(params[:id])
   end
 
   def set_search_form
