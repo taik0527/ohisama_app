@@ -28,10 +28,15 @@ password: password
 という母の抱えていた問題を解決するために作成した。  
 
 ## 使用画面と機能
-| ログインページ | 活動記録一覧ページ |
+| ログインページ | ユーザー登録ページ |
 | :--- | :--- |
-| [![Image from Gyazo](https://i.gyazo.com/cd3dbd9ad93a4b53230105109a2d15ed.png)](https://gyazo.com/cd3dbd9ad93a4b53230105109a2d15ed) | [![Image from Gyazo](https://i.gyazo.com/4865d4c9d318fab1ab72ca56cc631950.png)](https://gyazo.com/4865d4c9d318fab1ab72ca56cc631950) |
-| メールアドレスとパスワードでログインする | これまでの活動記録を検索できる |
+| [![Image from Gyazo](https://i.gyazo.com/cd3dbd9ad93a4b53230105109a2d15ed.png)](https://gyazo.com/cd3dbd9ad93a4b53230105109a2d15ed) | [![Image from Gyazo](https://i.gyazo.com/281a204374054eccdceb39551c7076a9.png)](https://gyazo.com/281a204374054eccdceb39551c7076a9) |
+| メールアドレスとパスワードでログインする | ユーザーの新規登録ができる |
+
+| 活動記録一覧ページ | 活動記録詳細ページ |
+| :--- | :--- |
+| [![Image from Gyazo](https://i.gyazo.com/4865d4c9d318fab1ab72ca56cc631950.png)](https://gyazo.com/4865d4c9d318fab1ab72ca56cc631950) | [![Image from Gyazo](https://i.gyazo.com/11ad1084751ce4c45056174926f06366.png)](https://gyazo.com/11ad1084751ce4c45056174926f06366) |
+| これまでの活動記録を検索できる | 活動記録の詳細を見ることができる |
   
 | 活動記録の投稿ページ | ユーザー一覧ページ |
 | :--- | :--- |
