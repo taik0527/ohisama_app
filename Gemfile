@@ -30,7 +30,6 @@ gem 'addressable'
 gem 'annotate'
 gem 'aws-sdk-s3', require: false
 gem 'config'
-gem 'html2slim'
 gem 'httparty'
 gem 'jquery-rails'
 gem 'json'
@@ -40,7 +39,6 @@ gem 'meta-tags'
 gem 'mini_magick'
 gem 'mini_racer', platforms: :ruby
 gem 'rails-i18n'
-gem 'rename'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'sorcery'
@@ -52,6 +50,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
   # gem 'spring-commands-rspec'
 end
@@ -63,14 +62,10 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'faker'
-  gem 'letter_opener'
-  gem 'letter_opener_web'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
-  # gem 'spring'
   gem 'bcrypt_pbkdf'
   gem 'capistrano'
   gem 'capistrano3-puma'
