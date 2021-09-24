@@ -53,7 +53,7 @@ password: password
 | [![Image from Gyazo](https://i.gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c.png)](https://gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c) | [![Image from Gyazo](https://i.gyazo.com/0b00e2862ebb2517840effdcd9792f6e.png)](https://gyazo.com/0b00e2862ebb2517840effdcd9792f6e) |
 | タイトル、著者名、出版社名からおひさま会の蔵書を検索することができる。 | 新しい蔵書を登録することができる。キーワードを入力して検索ボタンを押すと、候補が表示されて登録ができる。|
 
-## 使用技術
+## 使用技術 
 
 * Ruby 3.0.2
 * Ruby on Rails 6.1.4
