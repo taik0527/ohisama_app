@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: books
+#
+#  id                  :bigint           not null, primary key
+#  publisher           :string(255)      not null
+#  storage             :boolean          default(FALSE), not null
+#  title               :string(255)      not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  google_books_api_id :string(255)      not null
+#
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do

@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: records
+#
+#  id         :bigint           not null, primary key
+#  body       :text(65535)      not null
+#  classroom  :string(255)      not null
+#  date       :date             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Record < ApplicationRecord
   has_one_attached :image
 
