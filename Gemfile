@@ -30,15 +30,11 @@ gem 'addressable'
 gem 'annotate'
 gem 'aws-sdk-s3', require: false
 gem 'config'
-gem 'httparty'
 gem 'jquery-rails'
-gem 'json'
 gem 'kaminari'
 gem 'listen'
 gem 'meta-tags'
-gem 'mini_magick'
 gem 'mini_racer', platforms: :ruby
-gem 'rails-i18n'
 gem 'rmagick'
 gem 'slim-rails'
 
@@ -51,6 +47,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   # gem 'spring-commands-rspec'
 end
 
@@ -61,8 +59,6 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'bcrypt_pbkdf'
