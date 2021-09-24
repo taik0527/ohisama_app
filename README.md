@@ -65,5 +65,5 @@ password: password
 * GoogleBooksAPI
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/b440604d0257e882fae79234af4a5e97.png)](https://gyazo.com/b440604d0257e882fae79234af4a5e97)
+[![Image from Gyazo](https://i.gyazo.com/e57d8f74a3274121a8c3e796a89bfdb6.png)](https://gyazo.com/e57d8f74a3274121a8c3e796a89bfdb6)
 
