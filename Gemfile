@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'addressable'
 gem 'annotate'
 gem 'aws-sdk-s3', require: false
+gem 'config'
 gem 'httparty'
 gem 'jquery-rails'
 gem 'json'
