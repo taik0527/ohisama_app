@@ -69,7 +69,7 @@ class GoogleBook
       book.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpeg')), filename: 'no_image.jpeg')
     end
     ActiveRecord::Base.transaction do
-      book.save
+      book.save!
       authors_space_delete if authors.present?
       authors_save(book) if authors.present?
     end
@@ -79,7 +79,7 @@ class GoogleBook
   private
 
   def authors_space_delete
-    authors.map do |author|
+    authors.each do |author|
       author.delete!('　')
       author.delete!(' ')
     end
