@@ -11,6 +11,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_invitations_on_email  (email) UNIQUE
+#
 class Invitation < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :token, presence: true, uniqueness: true

@@ -11,6 +11,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_invitations_on_email  (email) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe Invitation, type: :model do
