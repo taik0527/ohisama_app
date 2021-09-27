@@ -23,7 +23,7 @@ class Book < ApplicationRecord
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
 
-  scope :search, lambda { |keyword|
+  scope :search, ->(keyword) {
     where('title like :q OR publisher like :q OR name like :q', q: "%#{keyword}%") if keyword.present?
   }
   scope :storage, -> { where(storage: true) }
