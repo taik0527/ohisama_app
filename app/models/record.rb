@@ -23,7 +23,7 @@ class Record < ApplicationRecord
   has_many :book_records, dependent: :destroy
   has_many :books, through: :book_records
 
-  scope :search, lambda { |keyword|
+  scope :search, ->(keyword) {
     if keyword.present?
       where('title like :q OR publisher like :q OR body like :q OR classroom like :q OR username like :q', q: "%#{keyword}%")
     end
