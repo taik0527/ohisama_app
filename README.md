@@ -14,18 +14,20 @@ https://onagawaohisama.com
 
 閲覧用（heroku)
   
-https://ancient-savannah-19356.herokuapp.com/login
+https://onagawaohisama.herokuapp.com
 
 ゲストユーザー
   
-email: guest@gmail.com
+email: guest@example.com
   
 password: password
 
 ## 作成した目的
-「いつもワードで作っていたお話し会の活動記録を簡単に作成できるようにしたい」  
-「お話し会の蔵書をメンバーがいつでも手元で確認できるようにしたい」  
-という母の抱えていた問題を解決するために作成した。  
+「いつもワードで作っていたお話し会の活動記録を簡単に作成できるようにしたい」
+
+「お話し会の蔵書をメンバーがいつでも手元で確認できるようにしたい」
+
+という母の抱えていた問題を解決するために作成しました。  
 
 ## 使用画面と機能
 | ログインページ | ユーザー登録ページ |
@@ -57,11 +59,15 @@ password: password
 
 * Ruby 3.0.2
 * Ruby on Rails 6.1.4
-* MySQL2
+* MySQL
+* Nginx
+* Puma
 * AWS
+  * VPC
   * EC2
   * RDS
   * route53
+  * S3
 * GoogleBooksAPI
 
 ## ER図
