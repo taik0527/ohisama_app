@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_143342) do
+ActiveRecord::Schema.define(version: 2021_09_27_045500) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_143342) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "publisher", null: false
+    t.index ["google_books_api_id"], name: "index_books_on_google_books_api_id", unique: true
   end
 
   create_table "invitations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_143342) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "expired_at", null: false
     t.index ["email"], name: "index_invitations_on_email", unique: true
+    t.index ["token"], name: "index_invitations_on_token", unique: true
   end
 
   create_table "records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

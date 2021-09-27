@@ -12,6 +12,10 @@
 #  updated_at          :datetime         not null
 #  google_books_api_id :string(255)      not null
 #
+# Indexes
+#
+#  index_books_on_google_books_api_id  (google_books_api_id) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do

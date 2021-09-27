@@ -14,6 +14,7 @@
 # Indexes
 #
 #  index_invitations_on_email  (email) UNIQUE
+#  index_invitations_on_token  (token) UNIQUE
 #
 class Invitation < ApplicationRecord
   validates :email, presence: true, uniqueness: true
