@@ -7,12 +7,11 @@
           p class="subtitle is-6" = record.classroom
           .content
             - if record.users.present?
-              .tile
+              .div
                 p 
-                  |  担当者 :
-              .tile
-                - record.users.each do |user|
-                  = user.username + " "
+                  | 担当者 : 
+                  - record.users.each do |user|
+                    = user.username + " "
         .media-right
           .columns.is-mobile
             - record.books.each_with_index do |book, i|

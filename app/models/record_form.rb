@@ -24,17 +24,15 @@ class RecordForm
     record = build_record
 
     ActiveRecord::Base.transaction do
-      record.save
-      user_ids.each do |user_id|
-        user = User.find(user_id)
-        record.users << user
-      end
+      record.save!
+
+      users = User.find(user_ids)
+      record.users = users
+
       google_books_api_ids.each do |google_books_api_id|
-        # 既存かどうかの判定
         if Book.exists?(google_books_api_id: google_books_api_id)
         else
           google_book = GoogleBook.new_from_id(google_books_api_id)
-          # 保存処理
           google_book.save
         end
         book = Book.find_by(google_books_api_id: google_books_api_id)

@@ -3,9 +3,9 @@
 ユーザーは会所有の蔵書を登録＆確認し、読み聞かせ活動の記録を作成することができます。
 
 ## 注意点
-実際にお話し会「おひさま」で使用されているアプリケーションのため、誰でもログインはできない仕組みになっています。
-  
-閲覧用のURLからログインをお願いします。
+実際にお話し会「おひさま」で使用されているアプリケーションのため、本番環境はログインはできない仕組みになっています。
+
+閲覧用のURLから、ゲストユーザーでログインをお願いします。
 
 ## URL
 本番環境
@@ -14,18 +14,20 @@ https://onagawaohisama.com
 
 閲覧用（heroku)
   
-https://ancient-savannah-19356.herokuapp.com/login
+https://onagawaohisama.herokuapp.com
 
 ゲストユーザー
   
-email: guest@gmail.com
+email: guest@example.com
   
 password: password
 
 ## 作成した目的
-「いつもワードで作っていたお話し会の活動記録を簡単に作成できるようにしたい」  
-「お話し会の蔵書をメンバーがいつでも手元で確認できるようにしたい」  
-という母の抱えていた問題を解決するために作成した。  
+「いつもワードで作っていたお話し会の活動記録を簡単に作成できるようにしたい」
+
+「お話し会の蔵書をメンバーがいつでも手元で確認できるようにしたい」
+
+という母の抱えていた問題を解決するために作成しました。  
 
 ## 使用画面と機能
 | ログインページ | ユーザー登録ページ |
@@ -53,17 +55,21 @@ password: password
 | [![Image from Gyazo](https://i.gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c.png)](https://gyazo.com/85dc532da8e2bea34ecd0a38cf7a458c) | [![Image from Gyazo](https://i.gyazo.com/0b00e2862ebb2517840effdcd9792f6e.png)](https://gyazo.com/0b00e2862ebb2517840effdcd9792f6e) |
 | タイトル、著者名、出版社名からおひさま会の蔵書を検索することができる。 | 新しい蔵書を登録することができる。キーワードを入力して検索ボタンを押すと、候補が表示されて登録ができる。|
 
-## 使用技術
+## 使用技術 
 
 * Ruby 3.0.2
 * Ruby on Rails 6.1.4
-* MySQL2
+* MySQL
+* Nginx
+* Puma
 * AWS
+  * VPC
   * EC2
   * RDS
   * route53
+  * S3
 * GoogleBooksAPI
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/b440604d0257e882fae79234af4a5e97.png)](https://gyazo.com/b440604d0257e882fae79234af4a5e97)
+[![Image from Gyazo](https://i.gyazo.com/e57d8f74a3274121a8c3e796a89bfdb6.png)](https://gyazo.com/e57d8f74a3274121a8c3e796a89bfdb6)
 

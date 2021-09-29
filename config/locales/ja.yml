@@ -1,5 +1,14 @@
 ---
 ja:
+  activemodel:
+    attributes:
+      record_form:
+        date: 日にち
+        classroom: 学級
+        image: 画像
+        body: 備考
+        user_ids: 担当者
+        google_books_api_ids: 読んだ絵本
   activerecord:
     errors:
       messages:
