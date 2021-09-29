@@ -1,6 +1,5 @@
 - @records.each do |record|
-  = link_to record_path(record)
-    .box
+  = link_to record_path(record), class: 'box'
       .media
         .media-content
           p class="title is-4" = record.date
