@@ -12,10 +12,9 @@ class BooksController < ApplicationController
   end
 
   def create
-    if Book.exists?(google_books_api_id: params[:google_books_api_id])
-      @book = Book.find_by(google_books_api_id: params[:google_books_api_id])
+    if @book = Book.find_by(google_books_api_id: params[:google_books_api_id])
       if @book.storage
-        redirect_to new_book_path, alert: '登録済みです'
+        redirect_to books_path, alert: '登録済みです'
       else
         @book.storage = true
         @book.save
